@@ -1,76 +1,73 @@
-<!DOCTYPE html>  
-<html lang="en">  
-<head>  
-    <meta charset="UTF-8">  
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
-    <title>EcoWise Shop</title>  
-    <link rel="stylesheet" href="styles/home.css">  
-    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@700&family=Roboto:wght@400&display=swap" rel="stylesheet">  
-</head>  
-<body>  
-    <header>  
-        <div class="logo-container">  
-            <img src="logo.png" alt="EcoWise Logo" class="logo-image"> <!-- Replace with your logo path -->  
-            <div class="logo-text">EcoWise</div>  
-        </div>  
-        <nav>  
-            <ul>  
-                <li><a href="#">Home</a></li>  
-                <li><a href="#">Products</a></li>  
-                <li><a href="#">Education</a></li>  
-                <li><a href="#">Community</a></li>  
-                <li><a href="#">Login/Register</a></li>  
-            </ul>  
-        </nav>  
-    </header>  
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sleep Outside | Home</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <script src="./js/main.js" type="module"></script>
+  </head>
 
-    <div class="search-container">  
-        <input type="text" class="search-box" placeholder="Search products...">  
-        <button type="submit" class="search-button">  
-            <img src="search-icon.png" alt="Search" class="search-icon"> <!-- Replace with your icon path -->  
-        </button>  
-    </div>  
-    
-    <main>  
-        <section class="hero">  
-            <div class="hero-text">  
-                <h1>Choose Eco-Friendly Products</h1>  
-                <a href="#" class="explore-button">Explore Eco-Friendly Products</a>  
-            </div>  
-        </section>  
-        
-        <section class="categories">  
-            <div class="category">Household</div>  
-            <div class="category">Personal Care</div>  
-            <div class="category">Food</div>  
-        </section>  
-        
-        <section class="products">  
-            <h2>Featured Products</h2>  
-            <div class="product-card">Product Card 1</div>  
-            <div class="product-card">Product Card 2</div>  
-            <div class="product-card">Product Card 3</div>  
-        </section>  
+  <body>
+    <header class="divider" id="header"></header>
+    <main class="divider">
+      <div class="hero">
+        <img
+          src="/images/banner-sm.jpg"
+          srcset="images/banner-sm.jpg 500w, images/banner.jpg"
+          alt="image of a high mountain lake"
+        />
+        <div class="logo logo--square">
+          <img src="/images/noun_Tent_2517.svg" alt="tent image for logo" />
+          <div>Sleep<span class="highlight">Outside</span></div>
+        </div>
+      </div>
 
-        <section class="mission">  
-            <h2>Our Mission</h2>  
-            <p>At EcoWise, we believe that every purchase can make a difference.</p>  
-            <p>Our mission is to empower consumers to make sustainable choices that protect our planet.</p>  
-            <p>We're dedicated to offering a range of eco-friendly products that are not only good for the earth but also for your home and family.</p>  
-        </section>  
-    </main>  
-    
-    <footer>  
-        <div class="footer-links">  
-            <a href="#">About Us</a>  
-            <a href="#">Contact Us</a>  
-            <a href="#">Blog</a>  
-        </div>  
-        <div class="social-media">  
-            <a href="#">Facebook</a>  
-            <a href="#">Twitter</a>  
-            <a href="#">Instagram</a>  
-        </div>  
-    </footer>  
-</body>  
-</html>  
+      <div>
+        <a href="product_listing/index.html?category=tents">
+          <img
+            src="https://byui-cse.github.io/wdd330-ww-course/images/category-tents.svg"
+            alt=""
+            height="100"
+          />
+        </a>
+        <a href="product_listing/index.html?category=backpacks">
+          <img
+            src="https://byui-cse.github.io/wdd330-ww-course/images/category-backpacks.svg"
+            alt=""
+            height="100"
+          />
+        </a>
+        <a href="product_listing/index.html?category=sleepingbags">
+          <img
+            src="https://byui-cse.github.io/wdd330-ww-course/images/category-sleepingbags.svg"
+            alt=""
+            height="100"
+          />
+        </a>
+        <a href="product_listing/index.html?category=hammocks">
+          <img
+            src="https://byui-cse.github.io/wdd330-ww-course/images/category-hammocks.svg"
+            alt=""
+            height="100"
+          />
+        </a>
+      </div>
+
+      <section class="mission">
+        <p>We spend too much time these days indoors...sitting usually.</p>
+        <p>No wonder we are a mess!</p>
+        <p>
+          What we really need is to get outside...in fact SLEEP outside. Our
+          mission is to provide you with everything you need to do this
+          comfortably at an affordable price.
+        </p>
+      </section>
+      <section class="products">
+        <h2>Top Products</h2>
+        <ul class="product-list"></ul>
+      </section>
+    </main>
+    <footer id="footer"></footer>
+  </body>
+</html>
