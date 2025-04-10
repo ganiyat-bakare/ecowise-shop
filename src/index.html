@@ -3,8 +3,22 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>EcoWise Shop</title>
-    <link rel="stylesheet" href="../css/home.css" />
+    <title>EcoWise Shop | Home</title>
+    <link rel="stylesheet" href="/css/style.css" />
+
+    <script src="./js/login.js" type="module"></script>
+
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+
+    <link rel="icon" href="../images/logos/favicon.ico" />
+
     <link
       href="https://fonts.googleapis.com/css2?family=Lora:wght@700&family=Roboto:wght@400&display=swap"
       rel="stylesheet"
@@ -12,75 +26,219 @@
   </head>
   <body>
     <header>
+      <!-- <div id="header"></div>  -->
       <div class="logo-container">
-        <img src="logo.png" alt="EcoWise Logo" class="logo-image" />
-        <!-- Replace with your logo path -->
-        <div class="logo-text">EcoWise</div>
+        <img
+          src="../images/logos/eco-logo.PNG"
+          alt="EcoWise Logo"
+          height="80"
+          class="logo-image"
+        />
+        <div class="logo-text">EcoWise Shop</div>
       </div>
       <nav>
-        <ul>
-          <li><a href="#">Home</a></li>
-          <li><a href="#">Products</a></li>
-          <li><a href="#">Education</a></li>
-          <li><a href="#">Community</a></li>
-          <li><a href="#">Login/Register</a></li>
+        <ul class="navigation">
+          <!-- <li><a href="src/index.html">Home</a></li>   -->
+          <!-- <li><a href="product-listing/index.html">Products</a></li>   -->
+          <li><a href="wishlist/index.html">Wishlist</a></li>
+          <li><a href="cart/index.html">Cart</a></li>
+          <li class="sign-in"><a href="#">Login</a></li>
+          <!-- <li><a href="auth/signup.html">Sign Up</a></li>  -->
+          <!-- <button class="btnLogin-popup">Login</button> -->
         </ul>
       </nav>
     </header>
 
-    <div class="search-container">
-      <input type="text" class="search-box" placeholder="Search products..." />
-      <button type="submit" class="search-button">
-        <img src="search-icon.png" alt="Search" class="search-icon" />
-        <!-- Replace with your icon path -->
-      </button>
-    </div>
-
     <main>
       <section class="hero">
-        <div class="hero-text">
-          <h1>Choose Eco-Friendly Products</h1>
-          <a href="#" class="explore-button">Explore Eco-Friendly Products</a>
+        <!-- <div class="hero-text"> -->
+        <!-- <img src="../images/logos/eco1.jpeg" alt="image of eco-friendly products"> -->
+        <!-- <h1>Choose Eco-Friendly Products</h1>   -->
+        <!-- <a href="product-listing/index.html" class="explore-button">Explore Eco-Friendly Products</a>   -->
+        <!-- </div>   -->
+        <div class="wrapper">
+          <span class="icon-close">
+            <ion-icon name="close"></ion-icon>
+          </span>
+          <div class="form-box login">
+            <h2>Login</h2>
+            <form id="login-form">
+              <div class="input-box">
+                <span class="icon"><ion-icon name="mail"></ion-icon></span>
+                <input type="email" id="email" required />
+                <label>Email</label>
+              </div>
+              <div class="input-box">
+                <span class="icon"
+                  ><ion-icon name="lock-closed"></ion-icon
+                ></span>
+                <input type="password" id="password" required />
+                <label>Password</label>
+              </div>
+              <div class="remember-forgot">
+                <label><input type="checkbox" /> Remember me</label>
+                <a href="#">Forgot Password?</a>
+              </div>
+              <button type="submit" class="btn">Login</button>
+              <div id="login-message"></div>
+              <div class="login-register">
+                <p>
+                  Don't have an account?
+                  <a href="#" class="register-link" id="show-signup"
+                    >Register</a
+                  >
+                </p>
+              </div>
+            </form>
+          </div>
+
+          <div class="form-box register">
+            <h2>Create Account</h2>
+            <form id="signup-form">
+              <div class="input-box">
+                <span class="icon"><ion-icon name="person"></ion-icon></span>
+                <input type="text" id="username" required />
+                <label>Username</label>
+              </div>
+              <div class="input-box">
+                <span class="icon"><ion-icon name="mail"></ion-icon></span>
+                <input type="email" id="email-signup" required />
+                <label>Email</label>
+              </div>
+              <div class="input-box">
+                <span class="icon"
+                  ><ion-icon name="lock-closed"></ion-icon
+                ></span>
+                <input type="password" id="password-signup" required />
+                <label>Password</label>
+              </div>
+              <div class="remember-forgot">
+                <label
+                  ><input type="checkbox" /> I agree to the terms &
+                  conditions</label
+                >
+              </div>
+              <button type="submit" class="btn">Register</button>
+              <div id="signup-message"></div>
+              <div class="login-register">
+                <p>Have an account? <a href="#" class="login-link">Login</a></p>
+              </div>
+            </form>
+          </div>
         </div>
       </section>
 
+      <div class="search-container">
+        <input
+          type="text"
+          class="search-box"
+          placeholder="Search products..."
+        />
+        <button type="submit" class="search-button">🔍</button>
+      </div>
+
+      <h2>Explore Eco-Friendly Products</h2>
       <section class="categories">
-        <div class="category">Household</div>
-        <div class="category">Personal Care</div>
-        <div class="category">Food</div>
+        <div class="category">
+          <a href="product-listing/index.html">
+            <img src="../images/household.jpeg" alt="" height="100" />
+          </a>
+        </div>
+        <div class="category">
+          <a href="product-pages/index.html">
+            <img src="../images/personal.webp" alt="" height="100" />
+          </a>
+        </div>
+        <div class="category">
+          <a href="product-listing/index.html">
+            <img src="../images/food.webp" alt="" height="100" />
+          </a>
+        </div>
       </section>
 
-      <section class="products">
-        <h2>Featured Products</h2>
-        <div class="product-card">Product Card 1</div>
-        <div class="product-card">Product Card 2</div>
-        <div class="product-card">Product Card 3</div>
-      </section>
+      <!-- <section class="products">  
+            <h2>Featured Products</h2>  
+            <div class="product-card" id="product-list">  
+                <img src="/images/tents/eco-tent.jpg" alt="Eco Tent" />  
+                <h3>Eco Tent 1</h3>  
+                <p>Description of Eco Tent 1.</p>  
+            </div>  
+            <div class="product-card">  
+                <img src="/images/backpacks/eco-backpack.jpg" alt="Eco Backpack" />  
+                <h3>Eco Backpack 1</h3>  
+                <p>Description of Eco Backpack 1.</p>  
+            </div>  
+            <div class="product-card">  
+                <img src="/images/sleeping-bags/eco-sleeping-bag.jpg" alt="Eco Sleeping Bag" />  
+                <h3>Eco Sleeping Bag 1</h3>  
+                <p>Description of Eco Sleeping Bag 1.</p>  
+            </div>  
+        </section>   -->
 
       <section class="mission">
-        <h2>Our Mission</h2>
-        <p>At EcoWise, we believe that every purchase can make a difference.</p>
+        <p>Every purchase is a step towards a better world.</p>
         <p>
-          Our mission is to empower consumers to make sustainable choices that
-          protect our planet.
+          At EcoWise, our mission is to empower you to make sustainable choices
+          that safeguard our planet for future generations.
         </p>
         <p>
-          We're dedicated to offering a range of eco-friendly products that are
-          not only good for the earth but also for your home and family.
+          We are committed to providing a diverse selection of eco-friendly
+          products that are as beneficial for your home and family as they are
+          for the environment.
         </p>
       </section>
+      <!-- <section class="mission">  
+            <p>At EcoWise, we believe that every purchase can make a difference.</p>  
+            <p>Our mission is to empower consumers to make sustainable choices that protect our planet.</p>  
+            <p>We're dedicated to offering a range of eco-friendly products that are not only good for the earth but also for your home and family.</p>  
+        </section>   -->
     </main>
 
     <footer>
-      <div class="footer-links">
-        <a href="#">About Us</a>
-        <a href="#">Contact Us</a>
-        <a href="#">Blog</a>
+      <div class="ecowise-shop">
+        <p>
+          <img
+            src="../images/logos/eco-logo.PNG"
+            alt="site logo"
+            width="20"
+            height="20"
+          />
+          <b>EcoWise Shop</b>
+        </p>
+        <p>100 Business St.</p>
+        <p>Abuja, NG</p>
+        <p>info@ecowiseshop.com</p>
+        <p>(+234) 8137367430</p>
       </div>
-      <div class="social-media">
-        <a href="#">Facebook</a>
-        <a href="#">Twitter</a>
-        <a href="#">Instagram</a>
+      <div class="social-media-links">
+        <a href="https://www.instagram.com/">
+          <img
+            src="../images/logos/instagram.webp"
+            alt="Instagram"
+            width="40"
+            height="40"
+        /></a>
+        <a href="https://www.facebook.com/Booustagal/">
+          <img
+            src="../images/logos/facebook.webp"
+            alt="Facebook"
+            width="40"
+            height="40"
+        /></a>
+        <a
+          href="https://www.linkedin.com/in/ganiyat-bakare-864501152?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BPScWsCr2Qc%2Bx779EAJmUdw%3D%3D"
+        >
+          <img
+            src="../images/logos/linkedin.webp"
+            alt="LinkedIn"
+            width="40"
+            height="40"
+        /></a>
+      </div>
+      <div class="project-info">
+        <p>WDD330 Class Project</p>
+        <p>Instructor: Nate Gibson</p>
+        <p>&copy; <span id="currentyear"></span> Healthy Eats</p>
       </div>
     </footer>
   </body>

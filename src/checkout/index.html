@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Checkout - EcoWise</title>
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Checkout</h1>
+    </header>
+    <main>
+      <form id="checkout-form">
+        <h2>Billing Details</h2>
+        <input type="text" id="full-name" placeholder="Full Name" required />
+        <input type="email" id="email" placeholder="Email" required />
+        <input
+          type="text"
+          id="address"
+          placeholder="Shipping Address"
+          required
+        />
+
+        <h2>Payment Details</h2>
+        <input
+          type="text"
+          id="card-number"
+          placeholder="Card Number"
+          required
+        />
+        <input type="text" id="expiry" placeholder="MM/YY" required />
+        <input type="text" id="cvv" placeholder="CVV" required />
+
+        <button type="submit">Place Order</button>
+      </form>
+      <p id="checkout-message"></p>
+    </main>
+    <script src="checkout.js"></script>
+  </body>
+</html>
