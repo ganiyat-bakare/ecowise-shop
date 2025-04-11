@@ -1,0 +1,15 @@
+import"./style-D4fjUIh6.js";document.addEventListener("DOMContentLoaded",function(){fetch("https://fakestoreapi.com/products").then(a=>a.json()).then(a=>{const t=document.getElementById("product-list");a.forEach(e=>{const i=Math.floor(Math.random()*16)+5,n=(e.price*(1-i/100)).toFixed(2),s=document.createElement("div");s.classList.add("product-item"),s.innerHTML=`  
+                  <span class="discount-badge">${i}% OFF</span>  
+                  <img src="${e.image}" alt="${e.title}" width="100">  
+                  <h3>${e.title}</h3>  
+                  <p><del>$${e.price}</del> <strong>$${n}</strong></p>  
+                  <button class="like-button" data-id="${e.id}">🤍</button>  
+                  <button class="quick-view" data-id="${e.id}" data-name="${e.title}" data-image="${e.image}" data-description="${e.description}" data-price="${n}">Quick View</button>  
+                  <button class="add-to-cart" data-id="${e.id}" data-name="${e.title}" data-price="${n}" data-image="${e.image}">Add to Cart</button>  
+              `,t.appendChild(s)}),r(),m(),l(),c()})});function l(){const a=document.querySelectorAll(".quick-view"),t=document.getElementById("quick-view-modal"),e=document.getElementById("modal-content");a.forEach(i=>{i.addEventListener("click",()=>{const n=i.dataset;e.innerHTML=`
+              <span id="close-modal" class="modal-close">&times;</span>
+              <h2>${n.name}</h2>  
+              <img src="${n.image}" alt="${n.name}" width="200">  
+              <p>${n.description}</p>  
+              <p>Price: <strong>$${n.price}</strong></p>  
+          `,t.style.display="flex"})}),t.addEventListener("click",i=>{(i.target.id==="close-modal"||i.target===t)&&(t.style.display="none")}),t.addEventListener("click",i=>{i.target===t&&(t.style.display="none")})}function r(){const a=document.querySelectorAll(".like-button"),t=JSON.parse(localStorage.getItem("wishlist"))||[];a.forEach(e=>{const i=e.dataset.id;t.some(s=>s.id===i)&&(e.classList.add("liked"),e.textContent="❤️"),e.addEventListener("click",()=>{const s={id:i,name:e.parentElement.querySelector("h3").innerText,price:e.parentElement.querySelector("strong").innerText,image:e.dataset.image},d=t.findIndex(o=>o.id===i);d===-1?(t.push(s),e.classList.add("liked"),e.textContent="❤️",alert("Added to wishlist!")):(t.splice(d,1),e.classList.remove("liked"),e.textContent="🤍",alert("Removed from wishlist!")),localStorage.setItem("wishlist",JSON.stringify(t))})})}function m(){document.querySelectorAll(".add-to-cart").forEach(t=>{t.addEventListener("click",()=>{const e=t.dataset.id,i=JSON.parse(localStorage.getItem("cart"))||[],n={id:e,name:t.parentElement.querySelector("h3").innerText,price:t.parentElement.querySelector("strong").innerText,image:t.dataset.image};i.findIndex(d=>d.id===e)===-1?(i.push(n),localStorage.setItem("cart",JSON.stringify(i)),c()):alert("This item is already in your cart!")})})}function c(){const a=document.getElementById("cart-count"),t=JSON.parse(localStorage.getItem("cart"))||[];a.innerText=t.length,t.length>0?a.classList.add("has-items"):a.classList.remove("has-items")}
