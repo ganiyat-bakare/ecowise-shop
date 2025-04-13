@@ -21,9 +21,9 @@
       href="https://fonts.googleapis.com/css2?family=Lora:wght@700&family=Roboto:wght@400&display=swap"
       rel="stylesheet"
     />
-    <script type="module" crossorigin src="/assets/main-CycII2TC.js"></script>
-    <link rel="modulepreload" crossorigin href="/assets/style-D4fjUIh6.js">
-    <link rel="stylesheet" crossorigin href="/assets/style-C-uad-Ex.css">
+    <script type="module" crossorigin src="/assets/main-CBKBJQTU.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/style-f1VwBhzE.js">
+    <link rel="stylesheet" crossorigin href="/assets/style-BX695ofz.css">
   </head>
   <body>
     <header>
@@ -130,12 +130,16 @@
       </section>
 
       <div class="search-container">
-        <input
-          type="text"
-          class="search-box"
-          placeholder="Search products..."
-        />
-        <button type="submit" class="search-button">🔍</button>
+        <form id="search-form" action="product-listing/index.html" method="GET">  
+          <input  
+            type="text"  
+            class="search-box"  
+            name="query"  
+            placeholder="Search products..."  
+            required  
+          />  
+          <button type="submit" class="search-button">🔍</button>  
+        </form>
       </div>
 
       <h2>Explore Eco-Friendly Products</h2>

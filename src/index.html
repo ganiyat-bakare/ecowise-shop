@@ -129,12 +129,16 @@
       </section>
 
       <div class="search-container">
-        <input
-          type="text"
-          class="search-box"
-          placeholder="Search products..."
-        />
-        <button type="submit" class="search-button">🔍</button>
+        <form id="search-form" action="product-listing/index.html" method="GET">  
+          <input  
+            type="text"  
+            class="search-box"  
+            name="query"  
+            placeholder="Search products..."  
+            required  
+          />  
+          <button type="submit" class="search-button">🔍</button>  
+        </form>
       </div>
 
       <h2>Explore Eco-Friendly Products</h2>
@@ -175,18 +179,30 @@
             </div>  
         </section>   -->
 
-      <section class="mission">
-        <p>Every purchase is a step towards a better world.</p>
-        <p>
-          At EcoWise, our mission is to empower you to make sustainable choices
-          that safeguard our planet for future generations.
-        </p>
-        <p>
-          We are committed to providing a diverse selection of eco-friendly
-          products that are as beneficial for your home and family as they are
-          for the environment.
-        </p>
-      </section>
+      <!-- Newsletter Section -->  
+      <div class="newsletter">  
+        <h2>Join Our Eco Community!</h2>  
+        <p>Subscribe to our newsletter for the latest news and exclusive offers.</p>  
+        <div class="newsletter-input-container">  
+            <input type="email" id="newsletterEmail" placeholder="Enter your email" required>  
+            <button id="newsletterSubmit">Subscribe</button>  
+        </div>  
+        <p id="newsletterMessage" class="hidden"></p>  
+      </div>  
+
+      <!-- Mission Section -->  
+      <section class="mission">  
+        <!-- <h2>Our Mission</h2>   -->
+        <p>Every purchase is a step towards a better world.</p>  
+        <p>  
+            At EcoWise, our mission is to empower you to make sustainable choices that safeguard our planet for  
+            future generations.  
+        </p>  
+        <p>  
+            We are committed to providing a diverse selection of eco-friendly products that are beneficial for your  
+            home and family as they are for the environment.  
+        </p>  
+      </section>  
       <!-- <section class="mission">  
             <p>At EcoWise, we believe that every purchase can make a difference.</p>  
             <p>Our mission is to empower consumers to make sustainable choices that protect our planet.</p>  
