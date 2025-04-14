@@ -8,35 +8,87 @@
 
     <script
       type="module"
-      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
     <script
       nomodule
-      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-    <script type="module" crossorigin src="/assets/listing-Dl3IPdPy.js"></script>
-    <link rel="modulepreload" crossorigin href="/assets/style-D4fjUIh6.js">
-    <link rel="stylesheet" crossorigin href="/assets/style-C-uad-Ex.css">
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+    <script type="module" crossorigin src="/assets/listing-k9bVJQVJ.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/modulepreload-polyfill-B5Qt9EMX.js">
+    <link rel="stylesheet" crossorigin href="/assets/style-DiwdvK-v.css">
   </head>
   <body>
     <header>
+      <div>
+        <label for="sort-options">
+          <select id="sort-options">
+            <option value="default">Sort by...</option>
+            <option value="name-asc">Name (A to Z)</option>
+            <option value="name-desc">Name (Z to A)</option>
+            <option value="price-asc">Price (Low to High)</option>
+            <option value="price-desc">Price (High to Low)</option>
+          </select>
+        </label>
+      </div>
+
+      <nav>
+        <div class="search-container">
+          <form
+            id="search-form"
+            action="product-listing/index.html"
+            method="GET"
+          >
+            <input
+              type="text"
+              class="search-box"
+              name="query"
+              placeholder="Search products..."
+              required
+            />
+            <button type="submit" class="search-button">🔍</button>
+          </form>
+        </div>
+        <div id="menu"></div>
+        <ul class="navigation">
+          <!-- <li class="current-menu-item"><a href="src/index.html">Home</a></li>   -->
+          <!-- <li class="current-menu-item"><a href="product-listing/index.html">Products</a></li>   -->
+          <!-- <li><a href="wishlist/index.html">Wishlist</a></li> -->
+          <!-- <li><a href="cart/index.html">Cart</a></li> -->
+          <!-- <li class="sign-in"><a href="auth/login.html">Login</a></li> -->
+          <!-- <li><a href="auth/signup.html">Sign Up</a></li>  -->
+          <!-- <button class="btnLogin-popup">Login</button> -->
+        </ul>
+      </nav>
+
       <a href="cart/index.html" id="cart-icon">
         <ion-icon name="cart"></ion-icon>
         <span id="cart-count">0</span>
       </a>
-      <!-- <div id="cart-icon">🛒<span id="cart-count">0<ion-icon name="cart"></ion-icon></span></div> -->
-      <!-- <div class="cart">
-            <a href="cart/index.html">
-                <span class="icon"><ion-icon name="cart"></ion-icon></span>
-        </div>   -->
     </header>
+
+    <div>
+      <h2>Top Products</h2>
+    </div>
+
+    <!-- <div>  
+      <label for="sort-options">
+        <select id="sort-options">  
+            <option value="default">Sort by...</option>  
+            <option value="name-asc">Name (A to Z)</option>  
+            <option value="name-desc">Name (Z to A)</option>  
+            <option value="price-asc">Price (Low to High)</option>  
+            <option value="price-desc">Price (High to Low)</option>  
+        </select> 
+      </label> 
+    </div>   -->
 
     <div id="product-list"></div>
 
     <div id="quick-view-modal">
-      <span id="close-modal">&times;</span>
+      <span id="close-modal"></span>
       <div id="modal-content"></div>
     </div>
-    <!-- <div id="quick-view-modal"></div>
-    <dialog id="modal-content"></dialog> -->
 
     <footer>
       <div class="ecowise-shop">

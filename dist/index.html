@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>EcoWise Shop | Home</title>
 
+    <!-- <script src="./js/login.js" type="module"></script> -->
 
     <script
       type="module"
@@ -21,13 +22,12 @@
       href="https://fonts.googleapis.com/css2?family=Lora:wght@700&family=Roboto:wght@400&display=swap"
       rel="stylesheet"
     />
-    <script type="module" crossorigin src="/assets/main-CycII2TC.js"></script>
-    <link rel="modulepreload" crossorigin href="/assets/style-D4fjUIh6.js">
-    <link rel="stylesheet" crossorigin href="/assets/style-C-uad-Ex.css">
+    <script type="module" crossorigin src="/assets/main-hAdgT72X.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/modulepreload-polyfill-B5Qt9EMX.js">
+    <link rel="stylesheet" crossorigin href="/assets/style-DiwdvK-v.css">
   </head>
   <body>
     <header>
-      <!-- <div id="header"></div>  -->
       <div class="logo-container">
         <img
           src="../images/logos/eco-logo.PNG"
@@ -37,13 +37,31 @@
         />
         <div class="logo-text">EcoWise Shop</div>
       </div>
+
       <nav>
+        <div class="search-container">
+          <form
+            id="search-form"
+            action="product-listing/index.html"
+            method="GET"
+          >
+            <input
+              type="text"
+              class="search-box"
+              name="query"
+              placeholder="Search products..."
+              required
+            />
+            <button type="submit" class="search-button">🔍</button>
+          </form>
+        </div>
+        <div id="menu"></div>
         <ul class="navigation">
-          <!-- <li><a href="src/index.html">Home</a></li>   -->
+          <li class="current-menu-item"><a href="src/index.html">Home</a></li>
           <!-- <li><a href="product-listing/index.html">Products</a></li>   -->
           <li><a href="wishlist/index.html">Wishlist</a></li>
           <li><a href="cart/index.html">Cart</a></li>
-          <li class="sign-in"><a href="#">Login</a></li>
+          <li class="sign-in"><a href="auth/login.html">Login</a></li>
           <!-- <li><a href="auth/signup.html">Sign Up</a></li>  -->
           <!-- <button class="btnLogin-popup">Login</button> -->
         </ul>
@@ -53,105 +71,29 @@
     <main>
       <section class="hero">
         <!-- <div class="hero-text"> -->
-        <!-- <img src="../images/logos/eco1.jpeg" alt="image of eco-friendly products"> -->
+        <!-- <img 
+         src="../images/hero-sm.jpg"  -->
+        <!-- srcset="images/hero-sm.jpg 500w, images/hero.jpg" -->
+        <!-- alt="image of carts with green boxes inside"> -->
         <!-- <h1>Choose Eco-Friendly Products</h1>   -->
         <!-- <a href="product-listing/index.html" class="explore-button">Explore Eco-Friendly Products</a>   -->
         <!-- </div>   -->
-        <div class="wrapper">
-          <span class="icon-close">
-            <ion-icon name="close"></ion-icon>
-          </span>
-          <div class="form-box login">
-            <h2>Login</h2>
-            <form id="login-form">
-              <div class="input-box">
-                <span class="icon"><ion-icon name="mail"></ion-icon></span>
-                <input type="email" id="email" required />
-                <label>Email</label>
-              </div>
-              <div class="input-box">
-                <span class="icon"
-                  ><ion-icon name="lock-closed"></ion-icon
-                ></span>
-                <input type="password" id="password" required />
-                <label>Password</label>
-              </div>
-              <div class="remember-forgot">
-                <label><input type="checkbox" /> Remember me</label>
-                <a href="#">Forgot Password?</a>
-              </div>
-              <button type="submit" class="btn">Login</button>
-              <div id="login-message"></div>
-              <div class="login-register">
-                <p>
-                  Don't have an account?
-                  <a href="#" class="register-link" id="show-signup"
-                    >Register</a
-                  >
-                </p>
-              </div>
-            </form>
-          </div>
-
-          <div class="form-box register">
-            <h2>Create Account</h2>
-            <form id="signup-form">
-              <div class="input-box">
-                <span class="icon"><ion-icon name="person"></ion-icon></span>
-                <input type="text" id="username" required />
-                <label>Username</label>
-              </div>
-              <div class="input-box">
-                <span class="icon"><ion-icon name="mail"></ion-icon></span>
-                <input type="email" id="email-signup" required />
-                <label>Email</label>
-              </div>
-              <div class="input-box">
-                <span class="icon"
-                  ><ion-icon name="lock-closed"></ion-icon
-                ></span>
-                <input type="password" id="password-signup" required />
-                <label>Password</label>
-              </div>
-              <div class="remember-forgot">
-                <label
-                  ><input type="checkbox" /> I agree to the terms &
-                  conditions</label
-                >
-              </div>
-              <button type="submit" class="btn">Register</button>
-              <div id="signup-message"></div>
-              <div class="login-register">
-                <p>Have an account? <a href="#" class="login-link">Login</a></p>
-              </div>
-            </form>
-          </div>
-        </div>
       </section>
-
-      <div class="search-container">
-        <input
-          type="text"
-          class="search-box"
-          placeholder="Search products..."
-        />
-        <button type="submit" class="search-button">🔍</button>
-      </div>
 
       <h2>Explore Eco-Friendly Products</h2>
       <section class="categories">
         <div class="category">
-          <a href="product-listing/index.html">
+          <a href="product-listing/index.html?category=household">
             <img src="../images/household.jpeg" alt="" height="100" />
           </a>
         </div>
         <div class="category">
-          <a href="product-pages/index.html">
+          <a href="product-listing/index.html?category=personal">
             <img src="../images/personal.webp" alt="" height="100" />
           </a>
         </div>
         <div class="category">
-          <a href="product-listing/index.html">
+          <a href="product-listing/index.html?category=food">
             <img src="../images/food.webp" alt="" height="100" />
           </a>
         </div>
@@ -176,7 +118,27 @@
             </div>  
         </section>   -->
 
+      <!-- Newsletter Section -->
+      <div class="newsletter">
+        <h2>Join Our Eco Community!</h2>
+        <p>
+          Subscribe to our newsletter for the latest news and exclusive offers.
+        </p>
+        <div class="newsletter-input-container">
+          <input
+            type="email"
+            id="newsletterEmail"
+            placeholder="Enter your email"
+            required
+          />
+          <button id="newsletterSubmit">Subscribe</button>
+        </div>
+        <p id="newsletterMessage" class="hidden"></p>
+      </div>
+
+      <!-- Mission Section -->
       <section class="mission">
+        <!-- <h2>Our Mission</h2>   -->
         <p>Every purchase is a step towards a better world.</p>
         <p>
           At EcoWise, our mission is to empower you to make sustainable choices
@@ -184,8 +146,8 @@
         </p>
         <p>
           We are committed to providing a diverse selection of eco-friendly
-          products that are as beneficial for your home and family as they are
-          for the environment.
+          products that are beneficial for your home and family as they are for
+          the environment.
         </p>
       </section>
       <!-- <section class="mission">  
