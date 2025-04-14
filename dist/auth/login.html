@@ -3,14 +3,25 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>EcoWise Shop | Wishlist</title>
-    <script type="module" crossorigin src="/assets/wishlist-CF2o5kPQ.js"></script>
-    <link rel="modulepreload" crossorigin href="/assets/modulepreload-polyfill-B5Qt9EMX.js">
+    <title>EcoWise Shop | Login</title>
+    <link rel="icon" href="../images/logos/favicon.ico" />
+
+    <!-- <script src="../js/success.js" type="module"></script> -->
+
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+    <script type="module" crossorigin src="/assets/modulepreload-polyfill-B5Qt9EMX.js"></script>
+    <script type="module" crossorigin src="/assets/login-DjvBAZPU.js"></script>
     <link rel="stylesheet" crossorigin href="/assets/style-DiwdvK-v.css">
   </head>
   <body>
     <header>
-      <!-- <div id="header"></div>  -->
       <div class="logo-container">
         <img
           src="../images/logos/eco-logo.PNG"
@@ -22,43 +33,57 @@
       </div>
 
       <nav>
-        <div class="search-container">
-          <form
-            id="search-form"
-            action="product-listing/index.html"
-            method="GET"
-          >
-            <input
-              type="text"
-              class="search-box"
-              name="query"
-              placeholder="Search products..."
-              required
-            />
-            <button type="submit" class="search-button">🔍</button>
-          </form>
-        </div>
         <div id="menu"></div>
         <ul class="navigation">
-          <li class="current-menu-item"><a href="src/index.html">Home</a></li>
+          <li><a href="src/index.html">Home</a></li>
           <!-- <li><a href="product-listing/index.html">Products</a></li>   -->
           <li><a href="wishlist/index.html">Wishlist</a></li>
           <li><a href="cart/index.html">Cart</a></li>
-          <li class="sign-in"><a href="auth/login.html">Login</a></li>
+          <li class="sign-in current-menu-item">
+            <a href="auth/login.html">Login</a>
+          </li>
           <!-- <li><a href="auth/signup.html">Sign Up</a></li>  -->
           <!-- <button class="btnLogin-popup">Login</button> -->
         </ul>
       </nav>
     </header>
 
-    <main>
-      <h2>Your Wishlist</h2>
-      <div id="wishlist-container" class="wishlist-container"></div>
-      <div id="empty-message" class="empty-message" style="display: none">
-        Your wishlist is empty.
-      </div>
-    </main>
+    <div>
+      <h2>Account</h2>
+    </div>
 
+    <div class="wrapper">
+      <div class="form-box login">
+        <h2>Login</h2>
+        <form id="login-form">
+          <div class="input-box">
+            <span class="icon"><ion-icon name="mail"></ion-icon></span>
+            <input type="email" id="email" required />
+            <label>Email</label>
+          </div>
+          <div class="input-box">
+            <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
+            <input type="password" id="password" required />
+            <label>Password</label>
+            <!-- <input type="checkbox" id="show-password-login" /> Show Password -->
+          </div>
+          <div class="remember-forgot">
+            <label><input type="checkbox" /> Remember me</label>
+            <a href="#">Forgot Password?</a>
+          </div>
+          <button type="submit" class="btn">Login</button>
+          <div id="login-message"></div>
+          <div class="login-register">
+            <p>
+              Don't have an account?
+              <a href="signup.html" class="register-link" id="show-signup"
+                >Register</a
+              >
+            </p>
+          </div>
+        </form>
+      </div>
+    </div>
     <footer>
       <div class="ecowise-shop">
         <p>
