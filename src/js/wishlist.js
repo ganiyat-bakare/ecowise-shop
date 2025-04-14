@@ -1,25 +1,25 @@
-document.addEventListener("DOMContentLoaded", function () {  
-    const wishlistContainer = document.getElementById("wishlist-container");  
-    const emptyMessage = document.getElementById("empty-message");  
+document.addEventListener("DOMContentLoaded", function () {
+  const wishlistContainer = document.getElementById("wishlist-container");
+  const emptyMessage = document.getElementById("empty-message");
 
-    // Load wishlist from local storage  
-    let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];  
+  // Load wishlist from local storage
+  let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
 
-    function renderWishlist() {  
-        if (wishlist.length === 0) {  
-            emptyMessage.style.display = "block";  
-            wishlistContainer.innerHTML = "";  
-            return;  
-        } else {  
-            emptyMessage.style.display = "none";  
-        }  
+  function renderWishlist() {
+    if (wishlist.length === 0) {
+      emptyMessage.style.display = "block";
+      wishlistContainer.innerHTML = "";
+      return;
+    } else {
+      emptyMessage.style.display = "none";
+    }
 
-        wishlistContainer.innerHTML = ""; // Clear existing items  
+    wishlistContainer.innerHTML = ""; // Clear existing items
 
-        wishlist.forEach(item => {  
-            const itemDiv = document.createElement("div");  
-            itemDiv.classList.add("wishlist-item");  
-            itemDiv.innerHTML = `  
+    wishlist.forEach((item) => {
+      const itemDiv = document.createElement("div");
+      itemDiv.classList.add("wishlist-item");
+      itemDiv.innerHTML = `  
                 <img src="${item.image}" alt="${item.name}" width="100">  
                 <div>  
                     <h3>${item.name}</h3>  
@@ -27,66 +27,70 @@ document.addEventListener("DOMContentLoaded", function () {
                 </div>  
                 <button class="move-to-cart" data-id="${item.id}">Move to Cart</button>  
                 <button class="remove-from-wishlist" data-id="${item.id}">X</button>  
-            `;  
-            wishlistContainer.appendChild(itemDiv);  
-        });  
+            `;
+      wishlistContainer.appendChild(itemDiv);
+    });
 
-        // Add event listeners to buttons  
-        setupButtonHandlers();  
-    }  
+    // Add event listeners to buttons
+    setupButtonHandlers();
+  }
 
-    function setupButtonHandlers() {  
-        const moveToCartButtons = document.querySelectorAll(".move-to-cart");  
-        const removeFromWishlistButtons = document.querySelectorAll(".remove-from-wishlist");  
-        
-        moveToCartButtons.forEach(button => {  
-            button.addEventListener("click", function () {  
-                const productId = this.dataset.id;  
-                moveToCart(productId);  
-            });  
-        });  
+  function setupButtonHandlers() {
+    const moveToCartButtons = document.querySelectorAll(".move-to-cart");
+    const removeFromWishlistButtons = document.querySelectorAll(
+      ".remove-from-wishlist",
+    );
 
-        removeFromWishlistButtons.forEach(button => {  
-            button.addEventListener("click", function () {  
-                const productId = this.dataset.id;  
-                removeFromWishlist(productId);  
-            });  
-        });  
-    }  
+    moveToCartButtons.forEach((button) => {
+      button.addEventListener("click", function () {
+        const productId = this.dataset.id;
+        moveToCart(productId);
+      });
+    });
 
-    function moveToCart(productId) {  
-        const cart = JSON.parse(localStorage.getItem('cart')) || [];  
-        const productIndex = wishlist.findIndex(item => item.id == productId);  
-        if (productIndex !== -1) {  
-            // Add the item to the cart  
-            const product = wishlist[productIndex];  
-            const existingProductIndex = cart.findIndex(item => item.id == productId);  
-            if (existingProductIndex === -1) {  
-                // Product is not in the cart; add it with quantity 1  
-                cart.push({  
-                    ...product,  
-                    quantity: 1 // Default quantity set to 1  
-                });  
-            } else {  
-                // If the product exists, we could simply increment the quantity if needed  
-                cart[existingProductIndex].quantity += 1; // Increase quantity  
-            }  
-            localStorage.setItem('cart', JSON.stringify(cart)); // Save updated cart  
-            wishlist.splice(productIndex, 1); // Remove from wishlist  
-            localStorage.setItem('wishlist', JSON.stringify(wishlist)); // Update local storage  
-            renderWishlist(); // Re-render the wishlist  
-        }  
-    }  
+    removeFromWishlistButtons.forEach((button) => {
+      button.addEventListener("click", function () {
+        const productId = this.dataset.id;
+        removeFromWishlist(productId);
+      });
+    });
+  }
 
-    function removeFromWishlist(productId) {  
-        const productIndex = wishlist.findIndex(item => item.id == productId);  
-        if (productIndex !== -1) {  
-            wishlist.splice(productIndex, 1); // Remove the product from the wishlist  
-            localStorage.setItem('wishlist', JSON.stringify(wishlist)); // Update local storage  
-            renderWishlist(); // Re-render the wishlist  
-        }  
-    }  
-    
-    // Initial render of wishlist  
-    renderWishlist();  
-});  
+  function moveToCart(productId) {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const productIndex = wishlist.findIndex((item) => item.id == productId);
+    if (productIndex !== -1) {
+      // Add the item to the cart
+      const product = wishlist[productIndex];
+      const existingProductIndex = cart.findIndex(
+        (item) => item.id == productId,
+      );
+      if (existingProductIndex === -1) {
+        // Product is not in the cart; add it with quantity 1
+        cart.push({
+          ...product,
+          quantity: 1, // Default quantity set to 1
+        });
+      } else {
+        // If the product exists, we could simply increment the quantity if needed
+        cart[existingProductIndex].quantity += 1; // Increase quantity
+      }
+      localStorage.setItem("cart", JSON.stringify(cart)); // Save updated cart
+      wishlist.splice(productIndex, 1); // Remove from wishlist
+      localStorage.setItem("wishlist", JSON.stringify(wishlist)); // Update local storage
+      renderWishlist(); // Re-render the wishlist
+    }
+  }
+
+  function removeFromWishlist(productId) {
+    const productIndex = wishlist.findIndex((item) => item.id == productId);
+    if (productIndex !== -1) {
+      wishlist.splice(productIndex, 1); // Remove the product from the wishlist
+      localStorage.setItem("wishlist", JSON.stringify(wishlist)); // Update local storage
+      renderWishlist(); // Re-render the wishlist
+    }
+  }
+
+  // Initial render of wishlist
+  renderWishlist();
+});
