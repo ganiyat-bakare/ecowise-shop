@@ -1,49 +1,66 @@
-function handleFormSubmission(email) {  
-    // Simulate an API call for subscription (this can be any form submission)  
-    // In a real-world scenario, you would send the `email` to your server here.  
+// Define a function to handle successful form submissions  
+function handleFormSubmission(email, username = null) {  
+    // Simulate an API call for form submission (can be adjusted based on actual implementation)  
     setTimeout(() => {  
-        // Navigate to confirmation page on success  
-        window.location.href = 'subscription-confirmation.html';  
-    }, 1000);  
+        // Create a success message  
+        let message;  
+        if (username) {  
+            message = `Registration successful! Welcome, ${username}!`;  
+        } else {  
+            message = `Success! A confirmation email has been sent to ${email}.`;  
+        }  
+
+        // Show the success message  
+        alert(message); // Replace with your preferred way of displaying messages  
+        // Optionally redirect user  
+        // window.location.href = 'some-confirmation-page.html';  
+    }, 1000); // Simulated delay for the "API" call  
 }  
 
-// Newsletter Sign-Up  
-document.addEventListener("DOMContentLoaded", function () {  
+// Common function to handle form submission for signup  
+function initializeSignup() {  
+    const signupForm = document.getElementById('signup-form');  
+    if (signupForm) {  
+        signupForm.addEventListener('submit', (e) => {  
+            e.preventDefault(); // Prevent default form submission  
+            const username = document.getElementById('username').value;  
+            const email = document.getElementById('email-signup').value;  
+            const password = document.getElementById('password-signup').value;  
+
+            // Validate inputs  
+            if (!email || !username || !password) {  
+                alert("Please fill in all fields.");  
+                return;  
+            }  
+            
+            handleFormSubmission(email, username); // Call with username included  
+            signupForm.reset(); // Reset fields  
+        });  
+    }  
+}  
+
+// Common function to handle newsletter submission  
+function initializeNewsletter() {  
     const newsletterSubmit = document.getElementById("newsletterSubmit");  
     const newsletterEmailInput = document.getElementById("newsletterEmail");  
     const newsletterMessage = document.getElementById("newsletterMessage");  
 
-    newsletterSubmit.addEventListener("click", function () {  
-        const email = newsletterEmailInput.value.trim();  
-
-        if (email === "") {  
-            newsletterMessage.innerText = "Please enter a valid email address.";  
-            newsletterMessage.classList.remove("hidden");  
-            return;  
-        }  
-
-        handleFormSubmission(email); // Call the general function  
-        
-        newsletterEmailInput.value = ""; // Clear the input after submit  
-    });  
-});  
-
-// Registration Form (Example)  
-document.addEventListener("DOMContentLoaded", function () {  
-    const signupSubmit = document.getElementById("signup-form");  
-
-    if (signupSubmit) {  
-        signupSubmit.addEventListener("submit", function (event) {  
-            event.preventDefault(); // Prevent the default form submission  
-
-            const email = document.getElementById("email-signup").value.trim();  
+    if (newsletterSubmit) {  
+        newsletterSubmit.addEventListener("click", () => {  
+            const email = newsletterEmailInput.value.trim();  
             if (email === "") {  
-                // Handle error if necessary (e.g., display message)  
-                alert("Please enter a valid email address.");  
+                newsletterMessage.innerText = "Please enter a valid email address.";  
+                newsletterMessage.classList.remove("hidden");  
                 return;  
             }  
-
             handleFormSubmission(email); // Call the general function  
+            newsletterEmailInput.value = ""; // Clear the input after submit  
         });  
     }  
-});  
+}  
+
+// Initialization function to run the respective form setups  
+document.addEventListener('DOMContentLoaded', () => {  
+    initializeSignup(); // Initialize signup form handling  
+    initializeNewsletter(); // Initialize newsletter form handling  
+});
