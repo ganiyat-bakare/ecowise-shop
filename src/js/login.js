@@ -70,7 +70,7 @@
 // login.js
 document.addEventListener("DOMContentLoaded", () => {
   // Elements for Login and Signup Forms
-  const showSignupLink = document.getElementById("show-signup");
+  const showSignupLink = document.querySelector(".register-link");
   const showLoginLink = document.querySelector(".login-link");
   const loginForm = document.querySelector(".form-box.login");
   const registerForm = document.querySelector(".form-box.register");
@@ -78,20 +78,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const signupMessage = document.getElementById("signup-message");
   const loginFormElement = document.getElementById("login-form");
   const loginMessage = document.getElementById("login-message");
-
-  // Show registration form
-  showSignupLink.addEventListener("click", (e) => {
-    e.preventDefault();
-    loginForm.style.display = "none";
-    registerForm.style.display = "block";
-  });
-
-  // Show login form
-  showLoginLink.addEventListener("click", (e) => {
-    e.preventDefault();
-    registerForm.style.display = "none";
-    loginForm.style.display = "block";
-  });
 
   // Handle signup form submission
   signupForm.addEventListener("submit", async (event) => {
