@@ -4,11 +4,28 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Checkout - EcoWise</title>
+
     <link rel="stylesheet" href="../css/style.css" />
+
+    <link rel="icon" href="../images/logos/favicon.ico" />
+
+    <script src="../js/checkout.js" type="module"></script>
   </head>
   <body>
     <header>
-      <h1>Checkout</h1>
+      <div class="logo-container">
+        <img
+          src="../images/logos/eco-logo.PNG"
+          alt="EcoWise Logo"
+          height="80"
+          class="logo-image"
+        />
+        <div class="logo-text">EcoWise Shop</div>
+      </div>
+
+      <div class="checkout">
+        <h1>Checkout</h1>
+      </div>
     </header>
     <main>
       <form id="checkout-form">
@@ -32,10 +49,10 @@
         <input type="text" id="expiry" placeholder="MM/YY" required />
         <input type="text" id="cvv" placeholder="CVV" required />
 
+        <p id="total-amount-display"></p>
         <button type="submit">Place Order</button>
       </form>
       <p id="checkout-message"></p>
     </main>
-    <script src="checkout.js"></script>
   </body>
 </html>
