@@ -174,7 +174,7 @@ function addToCart(product) {
     cartItems[existingProductIndex].quantity += 1; // Increment quantity
   } else {
     // Item does not exist, add it to the cart with quantity set to 1
-    product.quantity = 1; // Initialize quantity
+    product.quantity = 1; // Ensure quantity is properly initialized
     cartItems.push(product);
   }
 
@@ -199,6 +199,15 @@ function updateAddToCartButtons() {
       addToCart(productInfo); // Call the addToCart function with the product info
       alert("Added to cart!"); // Notify the user
       updateCartCount(); // Update the cart count after adding
+
+      // Animate cart icon
+      const cartIcon = document.querySelector(".cart-icon");
+      cartIcon.classList.add("animated");
+
+      // Remove animation class after animation completes
+      setTimeout(() => {
+        cartIcon.classList.remove("animated");
+      }, 600); // Duration should match the CSS animation duration
     });
   });
 }
@@ -206,10 +215,18 @@ function updateAddToCartButtons() {
 function updateCartCount() {
   const cartCountElement = document.getElementById("cart-count");
   const cart = JSON.parse(localStorage.getItem("cart")) || []; // Retrieve cart from local storage
-  // Calculate total quantity of items in the cart
-  const totalCount = cart.reduce((acc, item) => acc + item.quantity, 0);
-  cartCountElement.innerText = totalCount; // Update the count with total quantity
-  // Optional: Add animation style or update the UI based on the count
+
+  // Safely calculate total quantity of items in the cart
+  const totalCount = cart.reduce((acc, item) => {
+    // Ensure the item's quantity is a number, defaulting to 0 if not
+    const quantity = typeof item.quantity === "number" ? item.quantity : 0;
+    return acc + quantity;
+  }, 0);
+
+  // Update the count with total quantity
+  cartCountElement.innerText = totalCount;
+
+  // Optional: Add a visual indicator (like a class) if there are items in the cart
   if (totalCount > 0) {
     cartCountElement.classList.add("has-items"); // Add class if there are items
   } else {

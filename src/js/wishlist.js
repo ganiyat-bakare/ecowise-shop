@@ -1,6 +1,12 @@
 document.addEventListener("DOMContentLoaded", function () {
   const wishlistContainer = document.getElementById("wishlist-container");
   const emptyMessage = document.getElementById("empty-message");
+  const pageTitle = document.getElementById("heading");
+
+  const title = document.createElement("h2");
+  title.innerText = "Saved Items";
+
+  pageTitle.appendChild(title);
 
   // Load wishlist from local storage
   let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
