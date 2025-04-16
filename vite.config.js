@@ -17,7 +17,7 @@ export default defineConfig({
         wishlist: resolve(__dirname, "src/wishlist/index.html"),
         product: resolve(__dirname, "src/product-pages/index.html"),
         confirmation: resolve(__dirname, "src/success/index.html"),
-        History: resolve(__dirname, "src/orders/index.html"),
+        order: resolve(__dirname, "src/orders/index.html"), // changed "Order" to "order"
       },
     },
   },
