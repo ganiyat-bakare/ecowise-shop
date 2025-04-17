@@ -124,7 +124,6 @@ function showGiveawayModalIfFirstVisit() {
 
 showGiveawayModalIfFirstVisit();
 
-
 // Hamburger functionality
 const mainnav = document.querySelector(".navigation");
 const hambutton = document.querySelector("#menu");

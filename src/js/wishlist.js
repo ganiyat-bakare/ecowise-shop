@@ -79,11 +79,11 @@ document.addEventListener("DOMContentLoaded", function () {
         });
       } else {
         // If the product exists, we could simply increment the quantity if needed
-        cart[existingProductIndex].quantity += 1; 
+        cart[existingProductIndex].quantity += 1;
       }
-      localStorage.setItem("cart", JSON.stringify(cart)); 
+      localStorage.setItem("cart", JSON.stringify(cart));
       wishlist.splice(productIndex, 1);
-      localStorage.setItem("wishlist", JSON.stringify(wishlist)); 
+      localStorage.setItem("wishlist", JSON.stringify(wishlist));
       renderWishlist();
     }
   }
@@ -93,14 +93,13 @@ document.addEventListener("DOMContentLoaded", function () {
     if (productIndex !== -1) {
       wishlist.splice(productIndex, 1);
       localStorage.setItem("wishlist", JSON.stringify(wishlist));
-      renderWishlist(); 
+      renderWishlist();
     }
   }
 
   // Initial render of wishlist
   renderWishlist();
 });
-
 
 // Hamburger functionality
 const mainnav = document.querySelector(".navigation");
