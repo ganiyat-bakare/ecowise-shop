@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // If user not logged in, redirect
   if (isLoggedIn !== "true" || !currentUser) {
     alert("Please login to view your orders.");
-    window.location.href = "../auth/login.html";
+    window.location.href = "/auth/login.html";
     return;
   }
 
@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
     logoutBtn.addEventListener("click", () => {
       localStorage.removeItem("isLoggedIn");
       localStorage.removeItem("currentUser");
-      window.location.href = "../auth/login.html";
+      window.location.href = "/auth/login.html";
     });
   }
 

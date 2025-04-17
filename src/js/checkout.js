@@ -73,7 +73,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Redirect after a short delay
     setTimeout(() => {
-      window.location.href = "orders/index.html";
+      window.location.href = "/orders/index.html";
     }, 1000);
   });
 });

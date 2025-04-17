@@ -1,0 +1,9 @@
+import"./style-Clp0UT9D.js";document.addEventListener("DOMContentLoaded",function(){const s=document.getElementById("wishlist-container"),a=document.getElementById("empty-message"),m=document.getElementById("heading"),d=document.createElement("h2");d.innerText="Saved Items",m.appendChild(d);let n=JSON.parse(localStorage.getItem("wishlist"))||[];function c(){if(n.length===0){a.style.display="block",s.innerHTML="";return}else a.style.display="none";s.innerHTML="",n.forEach(t=>{const e=document.createElement("div");e.classList.add("wishlist-item"),e.innerHTML=`  
+                <img src="${t.image}" alt="${t.name}" width="100">  
+                <div>  
+                    <h3>${t.name}</h3>  
+                    <p>Price: $${t.price}</p>  
+                </div>  
+                <button class="move-to-cart" data-id="${t.id}">Move to Cart</button>  
+                <button class="remove-from-wishlist" data-id="${t.id}">X</button>  
+            `,s.appendChild(e)}),u()}function u(){const t=document.querySelectorAll(".move-to-cart"),e=document.querySelectorAll(".remove-from-wishlist");t.forEach(i=>{i.addEventListener("click",function(){const o=this.dataset.id;h(o)})}),e.forEach(i=>{i.addEventListener("click",function(){const o=this.dataset.id;g(o)})})}function h(t){const e=JSON.parse(localStorage.getItem("cart"))||[],i=n.findIndex(o=>o.id==t);if(i!==-1){const o=n[i],r=e.findIndex(p=>p.id==t);r===-1?e.push({...o,quantity:1}):e[r].quantity+=1,localStorage.setItem("cart",JSON.stringify(e)),n.splice(i,1),localStorage.setItem("wishlist",JSON.stringify(n)),c()}}function g(t){const e=n.findIndex(i=>i.id==t);e!==-1&&(n.splice(e,1),localStorage.setItem("wishlist",JSON.stringify(n)),c())}c()});const f=document.querySelector(".navigation"),l=document.querySelector("#menu");l.addEventListener("click",()=>{f.classList.toggle("open"),l.classList.toggle("open")});
