@@ -1,56 +1,66 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const viewOrderButton = document.getElementById("view-order-button");
-  const orderSummary = document.getElementById("order-summary");
-  const backToHomeButton = document.getElementById("back-to-home");
+  const isLoggedIn = localStorage.getItem("isLoggedIn");
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
-  // Check if we are on the success page
-  if (window.location.pathname.includes("orders/index.html")) {
-    viewOrderButton.addEventListener("click", function () {
-      const orderDetails = JSON.parse(localStorage.getItem("orderDetails"));
+  // If user not logged in, redirect
+  if (isLoggedIn !== "true" || !currentUser) {
+    alert("Please login to view your orders.");
+    window.location.href = "../auth/login.html";
+    return;
+  }
 
-      if (orderDetails) {
-        // Store order details in local storage for viewing
-        localStorage.setItem("orderDetailsView", JSON.stringify(orderDetails));
-        // Redirect to the orderDetails.html page
-        window.location.href = "orderDetails.html"; // Ensure this path is correct
-      } else {
-        alert("No order details found. Please try again.");
-      }
+  // Show welcome message if element exists
+  const welcomeUser = document.getElementById("welcome-user");
+  if (welcomeUser) {
+    welcomeUser.textContent = `Welcome, ${currentUser.username}!`;
+  }
+
+  // Show logout button if element exists
+  const logoutBtn = document.getElementById("logout-btn");
+  if (logoutBtn) {
+    logoutBtn.style.display = "block";
+    logoutBtn.addEventListener("click", () => {
+      localStorage.removeItem("isLoggedIn");
+      localStorage.removeItem("currentUser");
+      window.location.href = "../auth/login.html";
     });
   }
 
-  // Check if we are on the order details page
-  if (window.location.pathname.includes("orderDetails.html")) {
-    const orderDetails = JSON.parse(localStorage.getItem("orderDetailsView"));
+  // Fetch and display the order
+  const order = JSON.parse(localStorage.getItem("latestOrder"));
 
-    // Validate if order details exist
-    if (orderDetails) {
-      // Display customer details
-      orderSummary.innerHTML += `<h2>Customer Information</h2>`;
-      orderSummary.innerHTML += `<p><strong>Name:</strong> ${orderDetails.fullName}</p>`;
-      orderSummary.innerHTML += `<p><strong>Email:</strong> ${orderDetails.email}</p>`;
-      orderSummary.innerHTML += `<p><strong>Address:</strong> ${orderDetails.address}</p>`;
-
-      // Display order items
-      orderSummary.innerHTML += `<h2>Order Items</h2>`;
-      orderDetails.cartItems.forEach((item) => {
-        orderSummary.innerHTML += `  
-                    <div class="order-item">  
-                        <p><strong>Item:</strong> ${item.name}</p>  
-                        <p><strong>Price:</strong> $${item.price.toFixed(2)} x ${item.quantity}</p>  
-                    </div>  
-                `;
-      });
-
-      // Display total amount
-      orderSummary.innerHTML += `<h3>Total: $${orderDetails.totalAmount}</h3>`;
-    } else {
-      orderSummary.innerHTML = "<p>No order details available.</p>";
-    }
-
-    // Event listener for the "Back to Home" button
-    backToHomeButton.addEventListener("click", function () {
-      window.location.href = "src/index.html"; // Adjust the path as needed
-    });
+  if (!order) {
+    document.body.innerHTML = "<main><h2>No order found.</h2></main>";
+    return;
   }
+
+  document.getElementById("customer-info").textContent =
+    `Order for: ${order.fullName}`;
+
+  const itemsContainer = document.getElementById("order-items");
+  order.items.forEach((item) => {
+    const div = document.createElement("div");
+    div.classList.add("order-item");
+    div.innerHTML = `
+      <span>${item.name} (x${item.quantity})</span>
+      <span>$${(item.price * item.quantity).toFixed(2)}</span>
+    `;
+    itemsContainer.appendChild(div);
+  });
+
+  const formatMoney = (value) => {
+    const num = parseFloat(value);
+    return isNaN(num) ? "$0.00" : `$${num.toFixed(2)}`;
+  };
+
+  document.getElementById("summary-subtotal").textContent =
+    `Subtotal: ${formatMoney(order.subtotal)}`;
+  document.getElementById("summary-tax").textContent =
+    `Tax: ${formatMoney(order.tax)}`;
+  document.getElementById("summary-shipping").textContent =
+    `Shipping: ${formatMoney(order.shipping)}`;
+  document.getElementById("summary-total").textContent =
+    `Total: ${formatMoney(order.total)}`;
+
+  localStorage.removeItem("latestOrder");
 });
