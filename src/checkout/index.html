@@ -10,7 +10,6 @@
     <link rel="icon" href="../images/logos/favicon.ico" />
 
     <script src="../js/checkout.js" type="module"></script>
-    <script src="./js/main.js" type="module"></script>
   </head>
   <body>
     <header>
@@ -28,32 +27,54 @@
         <h1>Checkout</h1>
       </div>
     </header>
-    <main>
-      <form id="checkout-form">
-        <h2>Billing Details</h2>
-        <input type="text" id="full-name" placeholder="Full Name" required />
-        <input type="email" id="email" placeholder="Email" required />
-        <input
-          type="text"
-          id="address"
-          placeholder="Shipping Address"
-          required
-        />
-
-        <h2>Payment Details</h2>
-        <input
-          type="text"
-          id="card-number"
-          placeholder="Card Number"
-          required
-        />
-        <input type="text" id="expiry" placeholder="MM/YY" required />
-        <input type="text" id="cvv" placeholder="CVV" required />
-
-        <p id="total-amount-display"></p>
-        <button type="submit">Place Order</button>
+    <main class="checkout-page">
+      <section class="products">
+        <h2>Review & Place your Order</h2>
+      </section>
+      <form action="" name="checkout" id="checkout">
+        <fieldset>
+          <legend>Customer Name</legend>
+          <input type="text" name="fname" placeholder="First Name" required />
+          <input type="text" name="lname" placeholder="Last Name" required />
+        </fieldset>
+        <fieldset>
+          <legend>Address</legend>
+          <input
+            type="text"
+            name="street"
+            placeholder="Street Address"
+            required
+          />
+          <input type="text" name="city" placeholder="City" required />
+          <input type="text" name="state" placeholder="State" required />
+          <input type="text" name="zip" placeholder="Zip Code" required />
+        </fieldset>
+        <fieldset>
+          <legend>Payment</legend>
+          <input
+            type="text"
+            name="cardNumber"
+            placeholder="Credit Card Number"
+            required
+          />
+          <input
+            type="text"
+            name="expiration"
+            placeholder="Expiration Date"
+            required
+          />
+          <input type="text" name="code" placeholder="Security Code" required />
+        </fieldset>
+        <input type="submit" id="submit" value="Checkout" />
       </form>
-      <p id="checkout-message"></p>
+      <section id="summary">
+        <h1>Order Summary</h1>
+        <p id="subtotal">Subtotal:</p>
+        <p id="tax">Tax:</p>
+        <p id="shipping">Shipping Estimate:</p>
+        <p id="order">Order Total:</p>
+        <p id="items">Amount of items:</p>
+      </section>
     </main>
 
     <footer>
@@ -100,7 +121,7 @@
       <div class="project-info">
         <p>WDD330 Class Project</p>
         <p>Instructor: Nate Gibson</p>
-        <p>&copy; <span id="currentyear"></span> Healthy Eats</p>
+        <p>&copy; 2025 <span id="currentyear"></span> EcoWise Shop</p>
       </div>
     </footer>
   </body>

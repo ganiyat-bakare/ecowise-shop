@@ -9,11 +9,9 @@
     <link rel="icon" href="../images/logos/favicon.ico" />
 
     <script src="../js/cart.js" type="module"></script>
-    <script src="./js/main.js" type="module"></script>
   </head>
   <body>
     <header>
-      <!-- <div id="header"></div>  -->
       <div class="logo-container">
         <img
           src="../images/logos/eco-logo.PNG"
@@ -30,35 +28,30 @@
             id="search-form"
             action="product-listing/index.html"
             method="GET"
+            class="search-form"
           >
             <input
               type="text"
               class="search-box"
               name="query"
               placeholder="Search products..."
-              required
             />
             <button type="submit" class="search-button">🔍</button>
           </form>
         </div>
         <div id="menu"></div>
         <ul class="navigation">
-          <li><a href="src/index.html">Home</a></li>
+          <li><a href="index.html">Home</a></li>
           <li><a href="product-listing/index.html">Products</a></li>
           <li><a href="wishlist/index.html">Wishlist</a></li>
           <li class="current-menu-item"><a href="cart/index.html">Cart</a></li>
-          <!-- <li class="sign-in"><a href="auth/login.html">Login</a></li> -->
-          <!-- <li><a href="auth/signup.html">Sign Up</a></li>  -->
-          <!-- <button class="btnLogin-popup">Login</button> -->
         </ul>
       </nav>
     </header>
 
-    <div>
-      <h2>Shopping Cart</h2>
-    </div>
-
     <main>
+      <h2 id="heading"></h2>
+
       <div id="cart"></div>
 
       <div class="cart-footer hide">
@@ -66,16 +59,6 @@
         <button id="checkout-button" class="hide">Checkout</button>
       </div>
     </main>
-
-    <!-- Remove prompt modal -->
-    <!-- <div id="remove-prompt">  
-      <div class="prompt-content">  
-        <p>Do you want to save this item for later or remove it from the cart?</p>  
-        <button id="save-later">Save for Later</button>  
-        <button id="confirm-remove">Remove</button>  
-        <button id="close-prompt">Close</button>  
-      </div>  
-    </div>   -->
 
     <footer>
       <div class="ecowise-shop">
@@ -121,7 +104,7 @@
       <div class="project-info">
         <p>WDD330 Class Project</p>
         <p>Instructor: Nate Gibson</p>
-        <p>&copy; <span id="currentyear"></span> Healthy Eats</p>
+        <p>&copy; 2025<span id="currentyear"></span> EcoWise Shop</p>
       </div>
     </footer>
   </body>

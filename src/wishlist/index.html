@@ -10,11 +10,9 @@
     <link rel="stylesheet" href="/css/style.css" />
 
     <script src="../js/wishlist.js" type="module"></script>
-    <script src="./js/main.js" type="module"></script>
   </head>
   <body>
     <header>
-      <!-- <div id="header"></div>  -->
       <div class="logo-container">
         <img
           src="../images/logos/eco-logo.PNG"
@@ -31,26 +29,23 @@
             id="search-form"
             action="product-listing/index.html"
             method="GET"
+            class="search-form"
           >
             <input
               type="text"
               class="search-box"
               name="query"
               placeholder="Search products..."
-              required
             />
             <button type="submit" class="search-button">🔍</button>
           </form>
         </div>
         <div id="menu"></div>
         <ul class="navigation">
-          <li class="current-menu-item"><a href="src/index.html">Home</a></li>
-          <!-- <li><a href="product-listing/index.html">Products</a></li>   -->
-          <li><a href="wishlist/index.html">Wishlist</a></li>
+          <li><a href="index.html">Home</a></li>
+          <li class="current-menu-item"><a href="wishlist/index.html">Wishlist</a></li>
           <li><a href="cart/index.html">Cart</a></li>
           <li class="sign-in"><a href="auth/login.html">Login</a></li>
-          <!-- <li><a href="auth/signup.html">Sign Up</a></li>  -->
-          <!-- <button class="btnLogin-popup">Login</button> -->
         </ul>
       </nav>
     </header>
@@ -107,7 +102,7 @@
       <div class="project-info">
         <p>WDD330 Class Project</p>
         <p>Instructor: Nate Gibson</p>
-        <p>&copy; <span id="currentyear"></span> Healthy Eats</p>
+        <p>&copy; 2025<span id="currentyear"></span> EcoWise Shop</p>
       </div>
     </footer>
   </body>
