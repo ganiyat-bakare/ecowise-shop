@@ -102,6 +102,15 @@ li.current-menu-item a::before {
 }
 
 /* Search Form Styles */
+.search-form .search-container {
+  display: flex;
+  align-items: center;
+  background-color: var(--yellow);
+  padding: 10px;
+  margin: 20px 0;
+  border-radius: 8px;
+}
+
 .search-form {
   display: flex;
   align-items: center;
@@ -116,14 +125,16 @@ li.current-menu-item a::before {
   border-radius: 5px;
   border: 1px solid var(--light);
   width: 200px;
-  font-size: 1em;
+  font-size: 0.9rem;
+  margin-bottom: 0;
+  margin-top: 0;
 }
 
 .search-form .search-button {
   background: var(--yellow);
   border: none;
   cursor: pointer;
-  padding: 10px 15px;
+  padding: 8px 12px;
   border-radius: 5px;
   margin-left: 5px;
   font-size: 1em;
@@ -158,6 +169,82 @@ li.current-menu-item a::before {
 
 .explore-button:hover {
   background-color: var(--yellow2);
+}
+
+/* Modal Styles */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.modal.hidden {
+  display: none;
+}
+
+.modal-content {
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  text-align: center;
+  max-width: 500px;
+  width: 90%;
+  position: relative;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.modal-content h2 {
+  color: #2e7d32;
+  margin-bottom: 1rem;
+}
+
+.modal-content p {
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.modal-signup-btn {
+  display: inline-block;
+  background-color: #4caf50;
+  color: white;
+  padding: 0.8rem 1.5rem;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.modal-signup-btn:hover {
+  background-color: #388e3c;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 24px;
+  cursor: pointer;
+  color: #333;
+}
+
+/* Fade animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 #visitor-message {
@@ -268,6 +355,7 @@ h2 {
     opacity: 0;
     transform: scale(0.8);
   }
+
   100% {
     opacity: 1;
     transform: scale(1);
@@ -314,7 +402,6 @@ h2 {
   margin-top: 8px;
 }
 
-
 .weather-section figcaption {
   font-size: 1.1em;
   margin-top: 5px;
@@ -330,7 +417,6 @@ h2 {
   background: linear-gradient(to right, #4caf50, #81c784);
   color: var(--white);
   padding: 20px;
-  /* margin: 20px 10px;   */
   flex: 1 1 calc(30% - 20px);
   margin: 10px;
   border-radius: 8px;
@@ -355,20 +441,31 @@ h2 {
   margin-top: 20px;
 }
 
-.newsletter button {
-  padding: 10px 15px;
-  background-color: #ffeb3b;
+.newsletter .newsletter-input-container input[type="email"] {
+  padding: 20px;
+  flex: 1;
+  max-width: 300px;
+  border: none;
+  border-radius: 4px;
+  margin-right: 10px;
+  font-size: 1rem;
+  margin-bottom: 0;
+}
+
+.newsletter .newsletter-input-container button {
+  padding: 15px;
+  background-color: var(--yellow2);
   border: none;
   border-radius: 4px;
   color: var(--brown2);
   font-weight: bold;
-  font-size: 1em;
+  font-size: 1.2rem;
   cursor: pointer;
   margin-left: 10px;
 }
 
 .newsletter button:hover {
-  background-color: var(--yellow2);
+  background-color: var(--yellow);
 }
 
 #message {
@@ -513,9 +610,11 @@ input:required:valid {
   0% {
     transform: scale(1);
   }
+
   50% {
     transform: scale(1.3);
   }
+
   100% {
     transform: scale(1);
   }
@@ -530,9 +629,11 @@ input:required:valid {
   0% {
     transform: scale(1);
   }
+
   50% {
     transform: scale(1.4);
   }
+
   100% {
     transform: scale(1);
   }
@@ -545,6 +646,7 @@ input:required:valid {
   padding: 4px;
   font-size: 1rem;
 }
+
 .quantity-input.hidden {
   display: none;
 }
@@ -593,8 +695,10 @@ select {
   margin-bottom: 1rem;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
   gap: 10px;
+  text-align: center;
+  margin: 1rem;
+  padding: 1rem;
 }
 
 .quantity-controls {
@@ -802,10 +906,12 @@ button:hover {
     transform: scale(0.8);
     opacity: 0;
   }
+
   60% {
     transform: scale(1.1);
     opacity: 1;
   }
+
   100% {
     transform: scale(1);
   }
@@ -885,7 +991,7 @@ button:hover {
   cursor: pointer;
   background-color: #4caf50;
   color: white;
-  transition: background 0.3s;
+  transition: background-color 0.3s;
 }
 
 .modal-actions button#qty-cancel {
@@ -897,6 +1003,7 @@ button:hover {
     transform: translateY(50px);
     opacity: 0;
   }
+
   to {
     transform: translateY(0);
     opacity: 1;
@@ -1191,6 +1298,7 @@ button:hover {
   100% {
     transform: none;
   }
+
   50% {
     transform: scale(1.1);
   }
@@ -1340,10 +1448,10 @@ footer {
   }
 
   .search-container {
+    display: flex;
     position: relative;
-    width: 100%;
-    margin: 5px 0;
-    padding: 2px 30px;
+    width: 80%;
+    margin: 5px;
     font-size: 0.8rem;
   }
 
@@ -1355,11 +1463,13 @@ footer {
 
   .search-form .search-box {
     width: 100%;
-    margin-right: 5px;
+    margin-right: 2px;
+    font-size: 0.6rem;
   }
 
-  .search-button {
-    padding: 10px;
+  .search-form .search-button {
+    padding: 8px;
+    height: auto;
   }
 
   .hero {
@@ -1392,6 +1502,23 @@ footer {
   .category {
     margin: 10px 0;
     height: auto;
+  }
+
+  .newsletter h2 {
+    font-size: 1.8rem;
+  }
+
+  .newsletter p {
+    font-size: 1rem;
+  }
+
+  .newsletter .newsletter-input-container input[type="email"] {
+    margin-right: 5px;
+    font-size: 0.9rem;
+  }
+
+  .newsletter .newsletter-input-container button {
+    font-size: 0.9rem;
   }
 
   #cart-icon {
@@ -1534,5 +1661,59 @@ footer {
   .project-info a {
     color: var(--white);
     font-style: italic;
+  }
+}
+
+@media (max-width: 480px) {
+  header {
+    justify-content: space-around;
+  }
+
+  /* Cart Icon Positioning */
+  .cart-icon {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 1000;
+  }
+
+  /* Adjust hero spacing to account for moved search bar */
+  .hero {
+    padding-top: 1rem;
+  }
+
+  /* Reduce font sizes further */
+  .hero h1 {
+    font-size: 1.5rem;
+  }
+
+  .hero p {
+    font-size: 0.95rem;
+  }
+
+  .button,
+  button {
+    font-size: 0.95rem;
+    padding: 0.6rem 1.2rem;
+  }
+
+  /* Wishlist and Cart cards tighter */
+  .product {
+    padding: 0.5rem;
+  }
+
+  .product img {
+    max-width: 100%;
+  }
+
+  #modal-content,
+  .qty-modal-content {
+    width: 95%;
+    padding: 1rem;
+  }
+
+  footer {
+    padding: 1rem;
+    font-size: 0.9rem;
   }
 }

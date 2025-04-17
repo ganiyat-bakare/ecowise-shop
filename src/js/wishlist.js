@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
       emptyMessage.style.display = "none";
     }
 
-    wishlistContainer.innerHTML = ""; // Clear existing items
+    wishlistContainer.innerHTML = "";
 
     wishlist.forEach((item) => {
       const itemDiv = document.createElement("div");
@@ -75,32 +75,31 @@ document.addEventListener("DOMContentLoaded", function () {
         // Product is not in the cart; add it with quantity 1
         cart.push({
           ...product,
-          quantity: 1, // Default quantity set to 1
+          quantity: 1,
         });
       } else {
         // If the product exists, we could simply increment the quantity if needed
-        cart[existingProductIndex].quantity += 1; // Increase quantity
+        cart[existingProductIndex].quantity += 1;
       }
-      localStorage.setItem("cart", JSON.stringify(cart)); // Save updated cart
-      wishlist.splice(productIndex, 1); // Remove from wishlist
-      localStorage.setItem("wishlist", JSON.stringify(wishlist)); // Update local storage
-      renderWishlist(); // Re-render the wishlist
+      localStorage.setItem("cart", JSON.stringify(cart));
+      wishlist.splice(productIndex, 1);
+      localStorage.setItem("wishlist", JSON.stringify(wishlist));
+      renderWishlist();
     }
   }
 
   function removeFromWishlist(productId) {
     const productIndex = wishlist.findIndex((item) => item.id == productId);
     if (productIndex !== -1) {
-      wishlist.splice(productIndex, 1); // Remove the product from the wishlist
-      localStorage.setItem("wishlist", JSON.stringify(wishlist)); // Update local storage
-      renderWishlist(); // Re-render the wishlist
+      wishlist.splice(productIndex, 1);
+      localStorage.setItem("wishlist", JSON.stringify(wishlist));
+      renderWishlist();
     }
   }
 
   // Initial render of wishlist
   renderWishlist();
 });
-
 
 // Hamburger functionality
 const mainnav = document.querySelector(".navigation");

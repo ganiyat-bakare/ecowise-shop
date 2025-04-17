@@ -83,7 +83,7 @@ document.addEventListener("DOMContentLoaded", () => {
       signupMessage.style.color = "green";
 
       setTimeout(() => {
-        window.location.href = "auth/login.html";
+        window.location.href = "/auth/login.html";
       }, 1500);
     });
 

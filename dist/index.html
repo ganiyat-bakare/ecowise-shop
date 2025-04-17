@@ -21,10 +21,10 @@
       href="https://fonts.googleapis.com/css2?family=Lora:wght@700&family=Roboto:wght@400&display=swap"
       rel="stylesheet"
     />
-    <script type="module" crossorigin src="/assets/main-DUvUwXLT.js"></script>
-    <link rel="modulepreload" crossorigin href="/assets/style-BjrOFaNX.js">
+    <script type="module" crossorigin src="/assets/main-DPrrAP10.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/style-CspmrDQH.js">
     <link rel="modulepreload" crossorigin href="/assets/product-listing-DYCMCtPh.js">
-    <link rel="stylesheet" crossorigin href="/assets/style-DFya3pjJ.css">
+    <link rel="stylesheet" crossorigin href="/assets/style-jVJMtYUe.css">
   </head>
   <body>
     <header>
@@ -42,7 +42,7 @@
         <div class="search-container">
           <form
             id="search-form"
-            action="product-listing/index.html"
+            action="/product-listing/index.html"
             method="GET"
             class="search-form"
           >
@@ -57,18 +57,33 @@
         </div>
         <div id="menu"></div>
         <ul class="navigation">
-          <li class="current-menu-item"><a href="src/index.html">Home</a></li>
-          <li><a href="wishlist/index.html">Wishlist</a></li>
-          <li><a href="cart/index.html">Cart</a></li>
-          <li class="sign-in"><a href="auth/login.html">Login</a></li>
+          <li class="current-menu-item"><a href="/index.html">Home</a></li>
+          <li><a href="/wishlist/index.html">Wishlist</a></li>
+          <li><a href="/cart/index.html">Cart</a></li>
+          <li class="sign-in"><a href="/auth/login.html">Login</a></li>
         </ul>
       </nav>
     </header>
 
+    <!-- Registration Giveaway Modal -->
+    <div id="giveaway-modal" class="modal hidden">
+      <div class="modal-content">
+        <span class="close-btn" id="closeModal">&times;</span>
+        <h2>Win Eco-Friendly Prizes!</h2>
+        <p>
+          Join the EcoWise community and stand a chance to win sustainable
+          goodies in our monthly giveaway!
+        </p>
+        <a href="/auth/signup.html" class="btn modal-signup-btn"
+          >Register Now</a
+        >
+      </div>
+    </div>
+
     <main>
       <section class="hero">
         <div class="hero-text">
-          <a href="product-listing/index.html" class="explore-button"
+          <a href="/product-listing/index.html" class="explore-button"
             >Explore Eco-Friendly Products</a
           >
         </div>
@@ -79,17 +94,17 @@
       <h2>Explore Eco-Friendly Products</h2>
       <section class="categories">
         <div class="category">
-          <a href="product-listing/index.html?category=household">
+          <a href="/product-listing/index.html?category=household">
             <img src="../images/household.jpeg" alt="" height="100" />
           </a>
         </div>
         <div class="category">
-          <a href="product-listing/index.html?category=personal">
+          <a href="/product-listing/index.html?category=personal">
             <img src="../images/personal.webp" alt="" height="100" />
           </a>
         </div>
         <div class="category">
-          <a href="product-listing/index.html?category=food">
+          <a href="/product-listing/index.html?category=food">
             <img src="../images/food.webp" alt="" height="100" />
           </a>
         </div>

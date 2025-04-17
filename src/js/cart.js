@@ -91,7 +91,7 @@ document.addEventListener("DOMContentLoaded", function () {
   checkoutButton.addEventListener("click", function () {
     localStorage.setItem("cart", JSON.stringify(cartItems));
     localStorage.setItem("totalAmount", total.toFixed(2));
-    window.location.href = "checkout/index.html";
+    window.location.href = "/checkout/index.html";
   });
 });
 

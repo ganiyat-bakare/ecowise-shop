@@ -37,7 +37,7 @@ function displayResults(weatherData) {
     description.charAt(0).toUpperCase() + description.slice(1);
 
   // Simulated AQI Value (in a real app, you'd fetch from a dedicated AQI API)
-  const simulatedAQI = Math.floor(Math.random() * 201); // value between 0 and 200
+  const simulatedAQI = Math.floor(Math.random() * 201);
   aqiElement.textContent = simulatedAQI;
 
   // Choose AQI category (optional enhancement)
@@ -106,6 +106,25 @@ function displayVisitMessage() {
 
 displayVisitMessage();
 
+// Registration Giveaway Modal
+function showGiveawayModalIfFirstVisit() {
+  const hasSeenGiveaway = localStorage.getItem("hasSeenGiveaway");
+
+  if (!hasSeenGiveaway) {
+    const modal = document.getElementById("giveaway-modal");
+    modal.classList.remove("hidden");
+
+    document.getElementById("closeModal").addEventListener("click", () => {
+      modal.classList.add("hidden");
+    });
+
+    localStorage.setItem("hasSeenGiveaway", "true");
+  }
+}
+
+showGiveawayModalIfFirstVisit();
+
+// Hamburger functionality
 const mainnav = document.querySelector(".navigation");
 const hambutton = document.querySelector("#menu");
 
