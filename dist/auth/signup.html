@@ -4,7 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>EcoWise Shop | Signup</title>
+
     <link rel="icon" href="../images/logos/favicon.ico" />
+
 
     <script
       type="module"
@@ -14,9 +16,9 @@
       nomodule
       src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
     ></script>
-    <script type="module" crossorigin src="/assets/modulepreload-polyfill-B5Qt9EMX.js"></script>
-    <script type="module" crossorigin src="/assets/login-DjvBAZPU.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/style-DiwdvK-v.css">
+    <script type="module" crossorigin src="/assets/style-BjrOFaNX.js"></script>
+    <script type="module" crossorigin src="/assets/login-JV5AvkpG.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/style-DFya3pjJ.css">
   </head>
   <body>
     <header>
@@ -34,14 +36,11 @@
         <div id="menu"></div>
         <ul class="navigation">
           <li><a href="src/index.html">Home</a></li>
-          <!-- <li><a href="product-listing/index.html">Products</a></li>   -->
           <li><a href="wishlist/index.html">Wishlist</a></li>
           <li><a href="cart/index.html">Cart</a></li>
           <li class="sign-in current-menu-item">
             <a href="auth/login.html">Login</a>
           </li>
-          <!-- <li><a href="auth/signup.html">Sign Up</a></li>  -->
-          <!-- <button class="btnLogin-popup">Login</button> -->
         </ul>
       </nav>
     </header>
@@ -52,25 +51,38 @@
         <form id="signup-form">
           <div class="input-box">
             <span class="icon"><ion-icon name="person"></ion-icon></span>
-            <input type="text" id="username" required />
-            <label>Username</label>
+            <label>Username<input type="text" id="username" required /></label>
           </div>
           <div class="input-box">
             <span class="icon"><ion-icon name="mail"></ion-icon></span>
-            <input type="email" id="email-signup" required />
-            <label>Email</label>
+            <label
+              >Email<input
+                type="email"
+                id="email-signup"
+                placeholder="john89@gmail.com"
+                required
+            /></label>
           </div>
           <div class="input-box">
             <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
-            <input type="password" id="password-signup" required />
-            <label>Password</label>
-            <!-- <input type="checkbox" id="show-password-signup" /> Show Password    -->
+            <label
+              >Password<input type="password" id="password-signup" required
+            /></label>
+            <label class="show-password">
+              <input type="checkbox" id="show-password-signup" /> Show Password
+            </label>
           </div>
           <div class="input-box">
             <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
-            <input type="password" id="confirm-password" required />
-            <label>Confirm Password</label>
-            <!-- <input type="checkbox" id="show-confirm-password" /> Show Password   -->
+            <label
+              >Confirm Password<input
+                type="password"
+                id="confirm-password"
+                required
+            /></label>
+            <label class="show-password">
+              <input type="checkbox" id="show-confirm-password" /> Show Password
+            </label>
           </div>
           <div class="remember-forgot">
             <label
@@ -89,6 +101,7 @@
         </form>
       </div>
     </div>
+
     <footer>
       <div class="ecowise-shop">
         <p>
@@ -133,7 +146,7 @@
       <div class="project-info">
         <p>WDD330 Class Project</p>
         <p>Instructor: Nate Gibson</p>
-        <p>&copy; <span id="currentyear"></span> Healthy Eats</p>
+        <p>&copy; 2025<span id="currentyear"></span> EcoWise Shop</p>
       </div>
     </footer>
   </body>

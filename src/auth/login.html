@@ -7,8 +7,9 @@
     <link rel="stylesheet" href="/css/style.css" />
     <link rel="icon" href="../images/logos/favicon.ico" />
 
+    <link rel="icon" href="../images/logos/favicon.ico" />
+
     <script src="../js/login.js" type="module"></script>
-    <!-- <script src="../js/success.js" type="module"></script> -->
 
     <script
       type="module"
@@ -34,15 +35,9 @@
       <nav>
         <div id="menu"></div>
         <ul class="navigation">
-          <li><a href="src/index.html">Home</a></li>
-          <!-- <li><a href="product-listing/index.html">Products</a></li>   -->
+          <li><a href="index.html">Home</a></li>
           <li><a href="wishlist/index.html">Wishlist</a></li>
           <li><a href="cart/index.html">Cart</a></li>
-          <li class="sign-in current-menu-item">
-            <a href="auth/login.html">Login</a>
-          </li>
-          <!-- <li><a href="auth/signup.html">Sign Up</a></li>  -->
-          <!-- <button class="btnLogin-popup">Login</button> -->
         </ul>
       </nav>
     </header>
@@ -57,14 +52,22 @@
         <form id="login-form">
           <div class="input-box">
             <span class="icon"><ion-icon name="mail"></ion-icon></span>
-            <input type="email" id="email" required />
-            <label>Email</label>
+            <label
+              >Email<input
+                type="email"
+                id="email"
+                placeholder="john89@gmail.com"
+                required
+            /></label>
           </div>
           <div class="input-box">
             <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
-            <input type="password" id="password" required />
-            <label>Password</label>
-            <!-- <input type="checkbox" id="show-password-login" /> Show Password -->
+            <label
+              >Password<input type="password" id="password" required
+            /></label>
+            <label class="show-password">
+              <input type="checkbox" id="show-password-login" /> Show Password
+            </label>
           </div>
           <div class="remember-forgot">
             <label><input type="checkbox" /> Remember me</label>
@@ -83,6 +86,7 @@
         </form>
       </div>
     </div>
+
     <footer>
       <div class="ecowise-shop">
         <p>
@@ -127,7 +131,7 @@
       <div class="project-info">
         <p>WDD330 Class Project</p>
         <p>Instructor: Nate Gibson</p>
-        <p>&copy; <span id="currentyear"></span> Healthy Eats</p>
+        <p>&copy; 2025<span id="currentyear"></span> EcoWise Shop</p>
       </div>
     </footer>
   </body>

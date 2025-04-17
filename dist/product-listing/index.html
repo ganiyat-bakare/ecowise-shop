@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>EcoWise Shop | Products</title>
 
+    <link rel="icon" href="../images/logos/favicon.ico" />
+
 
     <script
       type="module"
@@ -14,9 +16,9 @@
       nomodule
       src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
     ></script>
-    <script type="module" crossorigin src="/assets/listing-k9bVJQVJ.js"></script>
-    <link rel="modulepreload" crossorigin href="/assets/modulepreload-polyfill-B5Qt9EMX.js">
-    <link rel="stylesheet" crossorigin href="/assets/style-DiwdvK-v.css">
+    <script type="module" crossorigin src="/assets/style-BjrOFaNX.js"></script>
+    <script type="module" crossorigin src="/assets/product-listing-DYCMCtPh.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/style-DFya3pjJ.css">
   </head>
   <body>
     <header>
@@ -38,32 +40,22 @@
             id="search-form"
             action="product-listing/index.html"
             method="GET"
+            class="search-form"
           >
             <input
               type="text"
               class="search-box"
               name="query"
               placeholder="Search products..."
-              required
             />
             <button type="submit" class="search-button">🔍</button>
           </form>
         </div>
-        <div id="menu"></div>
-        <ul class="navigation">
-          <!-- <li class="current-menu-item"><a href="src/index.html">Home</a></li>   -->
-          <!-- <li class="current-menu-item"><a href="product-listing/index.html">Products</a></li>   -->
-          <!-- <li><a href="wishlist/index.html">Wishlist</a></li> -->
-          <!-- <li><a href="cart/index.html">Cart</a></li> -->
-          <!-- <li class="sign-in"><a href="auth/login.html">Login</a></li> -->
-          <!-- <li><a href="auth/signup.html">Sign Up</a></li>  -->
-          <!-- <button class="btnLogin-popup">Login</button> -->
-        </ul>
       </nav>
 
       <a href="cart/index.html" id="cart-icon">
         <ion-icon name="cart"></ion-icon>
-        <span id="cart-count">0</span>
+        <span class="cart-badge" id="cart-count"></span>
       </a>
     </header>
 
@@ -71,23 +63,23 @@
       <h2>Top Products</h2>
     </div>
 
-    <!-- <div>  
-      <label for="sort-options">
-        <select id="sort-options">  
-            <option value="default">Sort by...</option>  
-            <option value="name-asc">Name (A to Z)</option>  
-            <option value="name-desc">Name (Z to A)</option>  
-            <option value="price-asc">Price (Low to High)</option>  
-            <option value="price-desc">Price (High to Low)</option>  
-        </select> 
-      </label> 
-    </div>   -->
-
     <div id="product-list"></div>
 
     <div id="quick-view-modal">
       <span id="close-modal"></span>
       <div id="modal-content"></div>
+    </div>
+
+    <!-- Quantity Modal -->
+    <div id="qty-modal" class="qty-modal">
+      <div class="qty-modal-content">
+        <h3>Select Quantity</h3>
+        <input type="number" id="qty-input" min="1" value="1" />
+        <div class="modal-actions">
+          <button id="qty-confirm">Add to Cart</button>
+          <button id="qty-cancel">Cancel</button>
+        </div>
+      </div>
     </div>
 
     <footer>
@@ -134,7 +126,7 @@
       <div class="project-info">
         <p>WDD330 Class Project</p>
         <p>Instructor: Nate Gibson</p>
-        <p>&copy; <span id="currentyear"></span> Healthy Eats</p>
+        <p>&copy; 2025<span id="currentyear"></span> EcoWise Shop</p>
       </div>
     </footer>
   </body>
