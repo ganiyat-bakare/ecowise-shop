@@ -1,118 +1,109 @@
-document.addEventListener("DOMContentLoaded", async function () {
-  const productList = document.getElementById("product-list");
-  const sortOptions = document.getElementById("sort-options");
+const productList = document.getElementById("product-list");
+const sortOptions = document.getElementById("sort-options");
 
-  // Function to fetch products
-  async function fetchProducts() {
-    try {
-      const response = await fetch("https://fakestoreapi.com/products");
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-      const products = await response.json();
-      renderProducts(products);
-      return products; // Return products for sorting and searching later
-    } catch (error) {
-      console.error("Error fetching products:", error);
-      productList.innerHTML =
-        "<p>Failed to load products. Please try again later.</p>"; // Show an error message to the user
-    }
+// Function to fetch products
+async function fetchProducts() {
+  try {
+    const response = await fetch("https://fakestoreapi.com/products");
+    if (!response.ok) throw new Error("Network response was not ok");
+    return await response.json();
+  } catch (error) {
+    productList.innerHTML =
+      "<p>Failed to load products. Please try again later.</p>";
+    return [];
+  }
+}
+
+// Function to render products
+function renderProducts(productsToRender) {
+  productList.innerHTML = "";
+
+  if (productsToRender.length === 0) {
+    productList.innerHTML = "<p>No products found.</p>";
+    return;
   }
 
-  // Function to render products
-  function renderProducts(productsToRender) {
-    productList.innerHTML = ""; // Clear existing products
+  // Track discounts for session consistency
+  const productDiscounts =
+    JSON.parse(sessionStorage.getItem("productDiscounts")) || {};
 
-    if (productsToRender.length === 0) {
-      productList.innerHTML = "<p>No products found.</p>";
-      return;
+  productsToRender.forEach((product) => {
+    let discount = productDiscounts[product.id];
+
+    if (!discount) {
+      discount = Math.floor(Math.random() * 16) + 5; // 5% to 20%
+      productDiscounts[product.id] = discount;
     }
 
-    productsToRender.forEach((product) => {
-      const discountPercentage = Math.floor(Math.random() * 16) + 5;
-      const discountedPrice = (
-        product.price *
-        (1 - discountPercentage / 100)
-      ).toFixed(2);
+    const discountedPrice = (product.price * (1 - discount / 100)).toFixed(2);
 
-      const productItem = document.createElement("div");
-      productItem.classList.add("product-item");
-      productItem.innerHTML = `  
-                <span class="discount-badge">${discountPercentage}% OFF</span>  
-                <img src="${product.image}" alt="${product.title}" width="100">  
-                <h3>${product.title}</h3>  
-                <p><del>$${product.price}</del> <strong>$${discountedPrice}</strong></p>  
-                <button class="like-button" data-id="${product.id}">🤍</button>  
-                <button class="quick-view" data-id="${product.id}" data-name="${product.title}" data-image="${product.image}" data-description="${product.description}" data-price="${discountedPrice}">Quick View</button>  
-                <button class="add-to-cart" data-id="${product.id}" data-name="${product.title}" data-price="${discountedPrice}" data-image="${product.image}">Add to Cart</button>  
-            `;
-      productList.appendChild(productItem);
-    });
+    const productItem = document.createElement("div");
+    productItem.classList.add("product-item");
+    productItem.innerHTML = `
+      <div class="product-image-wrapper">
+        <span class="discount-badge">${discount}% OFF</span>
+        <img src="${product.image}" alt="${product.title}" width="100">
+      </div>
+      <h3>${product.title}</h3>
+      <p><del>$${product.price}</del> <strong>$${discountedPrice}</strong></p>
+      <div class="product-buttons">
+        <button class="like-button" data-id="${product.id}" data-image="${product.image}">🤍</button>
+        <button 
+          class="quick-view" 
+          data-id="${product.id}" 
+          data-name="${product.title}" 
+          data-image="${product.image}" 
+          data-description="${product.description}" 
+          data-price="${discountedPrice}" 
+          data-original-price="${product.price}">
+          Quick View
+        </button>
+        <button class="add-to-cart" data-id="${product.id}" data-name="${product.title}" data-price="${discountedPrice}" data-image="${product.image}">Add to Cart</button>
+      </div>
+    `;
 
-    updateLikeButtons();
-    updateAddToCartButtons();
-    setupQuickViewButtons();
-    updateCartCount();
-  }
-
-  // Fetch and render products on page load
-  const products = await fetchProducts();
-
-  // Sorting functionality
-  sortOptions.addEventListener("change", function () {
-    const sortingOption = this.value;
-
-    let sortedProducts = [...products]; // Shallow copy of the products array
-
-    if (sortingOption === "name-asc") {
-      sortedProducts.sort((a, b) => a.title.localeCompare(b.title));
-    } else if (sortingOption === "name-desc") {
-      sortedProducts.sort((a, b) => b.title.localeCompare(a.title));
-    } else if (sortingOption === "price-asc") {
-      sortedProducts.sort((a, b) => a.price - b.price);
-    } else if (sortingOption === "price-desc") {
-      sortedProducts.sort((a, b) => b.price - a.price);
-    }
-
-    // Render the sorted products
-    renderProducts(sortedProducts);
+    productList.appendChild(productItem);
   });
 
-  // Search functionality
-  const urlParams = new URLSearchParams(window.location.search);
-  const searchQuery = urlParams.get("query");
+  sessionStorage.setItem("productDiscounts", JSON.stringify(productDiscounts));
 
-  if (searchQuery) {
-    // Filter products based on the search query
-    const filteredProducts = products.filter((product) =>
-      product.title.toLowerCase().includes(searchQuery.toLowerCase()),
-    );
+  updateLikeButtons();
+  updateAddToCartButtons();
+  setupQuickViewButtons();
+  updateCartCount();
+}
 
-    renderProducts(filteredProducts);
-  }
-});
-
-// Quick View modal functionality
 function setupQuickViewButtons() {
   const quickViewButtons = document.querySelectorAll(".quick-view");
   const quickViewModal = document.getElementById("quick-view-modal");
   const modalContent = document.getElementById("modal-content");
 
   quickViewButtons.forEach((button) => {
+    button.style.display = "inline-block";
     button.addEventListener("click", () => {
       const productData = button.dataset;
-      modalContent.innerHTML = `  
-            <span id="close-modal" class="modal-close">&times;</span>  
-            <h2>${productData.name}</h2>  
-            <img src="${productData.image}" alt="${productData.name}" width="200">  
-            <p>${productData.description}</p>  
-            <p>Price: <strong>$${productData.price}</strong></p>  
-        `;
+      const originalPrice = parseFloat(productData.originalPrice || 0);
+      const discountedPrice = parseFloat(productData.price);
+      const savings = originalPrice
+        ? (originalPrice - discountedPrice).toFixed(2)
+        : null;
+
+      modalContent.innerHTML = `
+        <span id="close-modal" class="modal-close">&times;</span>
+        <h2>${productData.name}</h2>
+        <img src="${productData.image}" alt="${productData.name}" width="200">
+        <p>${productData.description}</p>
+        <p>
+          <del>$${originalPrice.toFixed(2)}</del> 
+          <strong>$${discountedPrice.toFixed(2)}</strong>
+        </p>
+        ${savings ? `<p class="discount-flag">You save: $${savings}</p>` : ""}
+      `;
+
       quickViewModal.style.display = "flex";
     });
   });
 
-  // Close Quick View modal when the close button is clicked
   quickViewModal.addEventListener("click", (event) => {
     if (event.target.id === "close-modal" || event.target === quickViewModal) {
       quickViewModal.style.display = "none";
@@ -122,152 +113,147 @@ function setupQuickViewButtons() {
 
 function updateLikeButtons() {
   const likeButtons = document.querySelectorAll(".like-button");
-
-  // Load wishlist from local storage to preserve state on page load
   const wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+
   likeButtons.forEach((button) => {
     const productId = button.dataset.id;
-
-    // Check if the product is already in the wishlist
     const isLiked = wishlist.some((item) => item.id === productId);
     if (isLiked) {
       button.classList.add("liked");
       button.textContent = "❤️";
     }
 
-    // Add event listener for the like button
     button.addEventListener("click", () => {
+      const productCard = button.closest(".product-item");
+      const imageSrc = productCard.querySelector("img").src;
+      const name = productCard.querySelector("h3").innerText;
+      const price = productCard.querySelector("strong").innerText;
+
       const productInfo = {
         id: productId,
-        name: button.parentElement.querySelector("h3").innerText,
-        price: button.parentElement.querySelector("strong").innerText,
-        image: button.dataset.image,
+        name: name,
+        price: price,
+        image: imageSrc,
       };
-      const existingProductIndex = wishlist.findIndex(
-        (item) => item.id === productId,
-      );
-      if (existingProductIndex === -1) {
+
+      const existingIndex = wishlist.findIndex((item) => item.id === productId);
+      if (existingIndex === -1) {
         wishlist.push(productInfo);
         button.classList.add("liked");
         button.textContent = "❤️";
-        alert("Added to wishlist!");
       } else {
-        wishlist.splice(existingProductIndex, 1); // Remove from wishlist
+        wishlist.splice(existingIndex, 1);
         button.classList.remove("liked");
         button.textContent = "🤍";
-        alert("Removed from wishlist!");
       }
+
       localStorage.setItem("wishlist", JSON.stringify(wishlist));
     });
   });
 }
 
-// Add to Cart Functionality
-function addToCart(product) {
+function addToCart(product, quantity = 1) {
   const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
-  const existingProductIndex = cartItems.findIndex(
-    (item) => item.id === product.id,
-  );
+  const existingIndex = cartItems.findIndex((item) => item.id === product.id);
 
-  if (existingProductIndex !== -1) {
-    // Item already exists in the cart, increment the quantity
-    cartItems[existingProductIndex].quantity += 1; // Increment quantity
+  if (existingIndex !== -1) {
+    cartItems[existingIndex].quantity += quantity;
   } else {
-    // Item does not exist, add it to the cart with quantity set to 1
-    product.quantity = 1; // Ensure quantity is properly initialized
+    product.quantity = quantity;
     cartItems.push(product);
   }
 
-  // Save updated cart back to local storage
   localStorage.setItem("cart", JSON.stringify(cartItems));
 }
 
-// Update Add to Cart Buttons
 function updateAddToCartButtons() {
   const addToCartButtons = document.querySelectorAll(".add-to-cart");
+  const qtyModal = document.getElementById("qty-modal");
+  const qtyInput = document.getElementById("qty-input");
+  const confirmBtn = document.getElementById("qty-confirm");
+  const cancelBtn = document.getElementById("qty-cancel");
+
+  let currentProduct = null;
 
   addToCartButtons.forEach((button) => {
     button.addEventListener("click", () => {
-      const productId = button.dataset.id;
-      const productInfo = {
-        id: productId,
+      currentProduct = {
+        id: button.dataset.id,
         name: button.dataset.name,
-        price: parseFloat(button.dataset.price), // Ensure price is a number
+        price: parseFloat(button.dataset.price),
         image: button.dataset.image,
       };
 
-      addToCart(productInfo); // Call the addToCart function with the product info
-      alert("Added to cart!"); // Notify the user
-      updateCartCount(); // Update the cart count after adding
-
-      // Animate cart icon
-      const cartIcon = document.querySelector(".cart-icon");
-      cartIcon.classList.add("animated");
-
-      // Remove animation class after animation completes
-      setTimeout(() => {
-        cartIcon.classList.remove("animated");
-      }, 600); // Duration should match the CSS animation duration
+      qtyInput.value = 1;
+      qtyModal.classList.add("show");
     });
+  });
+
+  confirmBtn.addEventListener("click", () => {
+    const quantity = parseInt(qtyInput.value) || 1;
+    if (currentProduct) {
+      addToCart(currentProduct, quantity);
+      updateCartCount();
+    }
+    qtyModal.classList.remove("show");
+
+    // Optional: Add a toast or animation
+    const cartIcon = document.querySelector("#cart-icon");
+    cartIcon.classList.add("animated");
+    setTimeout(() => cartIcon.classList.remove("animated"), 600);
+  });
+
+  cancelBtn.addEventListener("click", () => {
+    qtyModal.classList.remove("show");
+    currentProduct = null;
   });
 }
 
 function updateCartCount() {
-  const cartCountElement = document.getElementById("cart-count");
-  const cart = JSON.parse(localStorage.getItem("cart")) || []; // Retrieve cart from local storage
+  const cart = JSON.parse(localStorage.getItem("cart")) || [];
+  const totalCount = cart.reduce((acc, item) => acc + (item.quantity || 0), 0);
 
-  // Safely calculate total quantity of items in the cart
-  const totalCount = cart.reduce((acc, item) => {
-    // Ensure the item's quantity is a number, defaulting to 0 if not
-    const quantity = typeof item.quantity === "number" ? item.quantity : 0;
-    return acc + quantity;
-  }, 0);
-
-  // Update the count with total quantity
-  cartCountElement.innerText = totalCount;
-
-  // Optional: Add a visual indicator (like a class) if there are items in the cart
+  const cartCountElem = document.getElementById("cart-count");
   if (totalCount > 0) {
-    cartCountElement.classList.add("has-items"); // Add class if there are items
+    cartCountElem.textContent = totalCount;
+    cartCountElem.style.display = "inline-block";
+    cartCountElem.classList.remove("pop");
+    void cartCountElem.offsetWidth;
+    cartCountElem.classList.add("pop");
   } else {
-    cartCountElement.classList.remove("has-items"); // Remove class if empty
+    cartCountElem.style.display = "none";
   }
 }
 
-// Initialize the application by fetching products
-(async function initializeApp() {
-  const products = await fetchProducts(); // Fetch the products from API
+// Initialize
 
-  // Setup sorting functionality based on fetched products
+document.addEventListener("DOMContentLoaded", async () => {
+  const products = await fetchProducts();
+  renderProducts(products);
+
   sortOptions.addEventListener("change", function () {
     const sortingOption = this.value;
-
-    let sortedProducts = [...products]; // Create a shallow copy of the products array
+    let sorted = [...products];
 
     if (sortingOption === "name-asc") {
-      sortedProducts.sort((a, b) => a.title.localeCompare(b.title));
+      sorted.sort((a, b) => a.title.localeCompare(b.title));
     } else if (sortingOption === "name-desc") {
-      sortedProducts.sort((a, b) => b.title.localeCompare(a.title));
+      sorted.sort((a, b) => b.title.localeCompare(a.title));
     } else if (sortingOption === "price-asc") {
-      sortedProducts.sort((a, b) => a.price - b.price);
+      sorted.sort((a, b) => a.price - b.price);
     } else if (sortingOption === "price-desc") {
-      sortedProducts.sort((a, b) => b.price - a.price);
+      sorted.sort((a, b) => b.price - a.price);
     }
 
-    // Render the sorted products
-    renderProducts(sortedProducts);
+    renderProducts(sorted);
   });
 
-  // Search functionality based on URL query
   const urlParams = new URLSearchParams(window.location.search);
   const searchQuery = urlParams.get("query");
-
   if (searchQuery) {
-    // Filter products based on the search query
-    const filteredProducts = products.filter((product) =>
+    const filtered = products.filter((product) =>
       product.title.toLowerCase().includes(searchQuery.toLowerCase()),
     );
-
-    renderProducts(filteredProducts);
+    renderProducts(filtered);
   }
-})();
+});

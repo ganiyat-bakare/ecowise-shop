@@ -1,196 +1,115 @@
-// document.addEventListener('DOMContentLoaded', () => {
-//   // Elements for Login and Signup Forms
-//   const showSignupLink = document.getElementById('show-signup');
-//   const showLoginLink = document.querySelector('.login-link');
-//   const loginForm = document.querySelector('.form-box.login');
-//   const registerForm = document.querySelector('.form-box.register');
-//   const signupForm = document.getElementById('signup-form');
-//   const signupMessage = document.getElementById('signup-message');
-//   const loginFormElement = document.getElementById('login-form');
-//   const loginMessage = document.getElementById('login-message');
-
-//   // Show registration form
-//   showSignupLink.addEventListener('click', (e) => {
-//       e.preventDefault();
-//       loginForm.style.display = 'none';
-//       registerForm.style.display = 'block';
-//   });
-
-//   // Show login form
-//   showLoginLink.addEventListener('click', (e) => {
-//       e.preventDefault();
-//       registerForm.style.display = 'none';
-//       loginForm.style.display = 'block';
-//   });
-
-//   // Handle signup form submission
-//   signupForm.addEventListener('submit', (e) => {
-//       e.preventDefault(); // Prevent form submission
-
-//       const username = document.getElementById('username').value;
-//       const email = document.getElementById('email-signup').value;
-//       const password = document.getElementById('password-signup').value;
-//       const confirmPassword = document.getElementById('confirm-password').value;
-
-//       // Validate password confirmation
-//       if (password !== confirmPassword) {
-//           signupMessage.textContent = "Passwords do not match!";
-//           signupMessage.style.color = 'red'; // Make message red for error
-//           return;
-//       }
-
-//       // Simulate successful registration
-//       setTimeout(() => {
-//           signupMessage.textContent = `Registration successful! Welcome, ${username}!`;
-//           signupMessage.style.color = 'green'; // Make message green for success
-//           signupForm.reset(); // Reset the signup form fields
-//       }, 1000); // Simulate a delay for the "API" call
-//   });
-
-//   // Handle login form submission
-//   loginFormElement.addEventListener('submit', (e) => {
-//       e.preventDefault(); // Prevent default form submission
-
-//       const email = document.getElementById('email').value;
-//       const password = document.getElementById('password').value;
-
-//       // Simulate user authentication (replace with real API call)
-//       setTimeout(() => {
-//           if (email === "test@example.com" && password === "password123") {
-//               loginMessage.textContent = "Login successful! Welcome back!";
-//               loginMessage.style.color = 'green'; // Make message green for success
-//           } else {
-//               loginMessage.textContent = "Login failed! Incorrect email or password.";
-//               loginMessage.style.color = 'red';             // Make message red for failure
-//             }
-//             loginFormElement.reset(); // Reset the login form fields
-//         }, 1000); // Simulate a delay for the "API" call
-//     });
-
-// login.js
 document.addEventListener("DOMContentLoaded", () => {
-  // Elements for Login and Signup Forms
-  const showSignupLink = document.querySelector(".register-link");
-  const showLoginLink = document.querySelector(".login-link");
-  const loginForm = document.querySelector(".form-box.login");
-  const registerForm = document.querySelector(".form-box.register");
+  const loginForm = document.getElementById("login-form");
   const signupForm = document.getElementById("signup-form");
-  const signupMessage = document.getElementById("signup-message");
-  const loginFormElement = document.getElementById("login-form");
-  const loginMessage = document.getElementById("login-message");
 
-  // Handle signup form submission
-  signupForm.addEventListener("submit", async (event) => {
-    event.preventDefault(); // Prevent form submission
+  // LOGIN
+  if (loginForm) {
+    const loginMessage = document.getElementById("login-message");
 
-    const username = document.getElementById("username").value;
-    const email = document.getElementById("email-signup").value;
-    const password = document.getElementById("password-signup").value;
-    const confirmPassword = document.getElementById("confirm-password").value;
+    loginForm.addEventListener("submit", (e) => {
+      e.preventDefault();
 
-    // Validate password confirmation
-    if (password !== confirmPassword) {
-      signupMessage.textContent = "Passwords do not match!";
-      signupMessage.style.color = "red"; // Make message red for error
-      return;
-    }
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value.trim();
+      const users = JSON.parse(localStorage.getItem("users")) || [];
 
-    const payload = { username, email, password };
+      const user = users.find(
+        (u) => u.email === email && u.password === password,
+      );
 
-    try {
-      const response = await fetch("https://api.example.com/signup", {
-        // Replace with actual signup URL
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(payload),
-      });
+      if (user) {
+        // Save login session
+        localStorage.setItem("isLoggedIn", "true");
+        localStorage.setItem("currentUser", JSON.stringify(user));
+        localStorage.setItem(
+          "authToken",
+          JSON.stringify({ email: user.email }),
+        );
 
-      const data = await response.json();
+        loginMessage.textContent = "Login successful! Redirecting...";
+        loginMessage.style.color = "green";
 
-      if (response.ok) {
-        signupMessage.textContent =
-          "Account created successfully! Redirecting...";
-        signupMessage.style.color = "green"; // Make message green for success
-        // Redirect to login form after a success message
         setTimeout(() => {
-          loginForm.style.display = "block";
-          registerForm.style.display = "none";
-          signupForm.reset();
-        }, 2000);
+          window.location.href = "../orders/index.html";
+        }, 1500);
       } else {
-        signupMessage.textContent =
-          data.message || "Sign up failed. Please try again.";
-        signupMessage.style.color = "red";
+        loginMessage.textContent = "Invalid email or password.";
+        loginMessage.style.color = "red";
       }
-    } catch (error) {
-      console.error("Error signing up:", error);
-      signupMessage.textContent = "An error occurred. Please try again.";
-      signupMessage.style.color = "red";
-    }
-  });
+    });
 
-  // Handle login form submission
-  loginFormElement.addEventListener("submit", async (event) => {
-    event.preventDefault(); // Prevent default form submission
+    document
+      .getElementById("show-password-login")
+      .addEventListener("change", function () {
+        document.getElementById("password").type = this.checked
+          ? "text"
+          : "password";
+      });
+  }
 
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
+  // SIGNUP
+  if (signupForm) {
+    const signupMessage = document.getElementById("signup-message");
 
-    const payload = { email, password };
+    signupForm.addEventListener("submit", (e) => {
+      e.preventDefault();
 
-    try {
-      const response = await fetch("https://api.example.com/login", {
-        // Replace with the actual login URL
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(payload),
+      const username = document.getElementById("username").value.trim();
+      const email = document.getElementById("email-signup").value.trim();
+      const password = document.getElementById("password-signup").value.trim();
+      const confirmPassword = document
+        .getElementById("confirm-password")
+        .value.trim();
+
+      if (password !== confirmPassword) {
+        signupMessage.textContent = "Passwords do not match!";
+        signupMessage.style.color = "red";
+        return;
+      }
+
+      const users = JSON.parse(localStorage.getItem("users")) || [];
+
+      if (users.some((user) => user.email === email)) {
+        signupMessage.textContent = "User already exists!";
+        signupMessage.style.color = "red";
+        return;
+      }
+
+      const newUser = { username, email, password };
+      users.push(newUser);
+      localStorage.setItem("users", JSON.stringify(users));
+
+      signupMessage.textContent = "Account created! Redirecting to login...";
+      signupMessage.style.color = "green";
+
+      setTimeout(() => {
+        window.location.href = "auth/login.html";
+      }, 1500);
+    });
+
+    document
+      .getElementById("show-password-signup")
+      .addEventListener("change", function () {
+        document.getElementById("password-signup").type = this.checked
+          ? "text"
+          : "password";
       });
 
-      const data = await response.json();
+    document
+      .getElementById("show-confirm-password")
+      .addEventListener("change", function () {
+        document.getElementById("confirm-password").type = this.checked
+          ? "text"
+          : "password";
+      });
+  }
+});
 
-      if (response.ok) {
-        localStorage.setItem("authToken", data.token); // Assuming the API returns a token
-        window.location.href = "orders.html"; // Redirect to a protected orders page
-      } else {
-        loginMessage.textContent =
-          data.message || "Login failed. Please try again.";
-        loginMessage.style.color = "red"; // Make message red for failure
-      }
-    } catch (error) {
-      console.error("Error logging in:", error);
-      loginMessage.textContent = "An error occurred. Please try again.";
-      loginMessage.style.color = "red";
-    }
-  });
+// Hamburger menu functionality
+const mainnav = document.querySelector(".navigation");
+const hambutton = document.querySelector("#menu");
 
-  // Password visibility toggle for Signup
-  document
-    .getElementById("show-password-signup")
-    .addEventListener("change", function () {
-      const passwordField = document.getElementById("password-signup");
-      passwordField.type = this.checked ? "text" : "password"; // Toggle password type
-    });
-
-  // Show Confirm Password Checkbox
-  document
-    .getElementById("show-confirm-password")
-    .addEventListener("change", function () {
-      const confirmPasswordField = document.getElementById("confirm-password");
-      confirmPasswordField.type = this.checked ? "text" : "password"; // Toggle password type
-    });
-
-  // Password visibility toggle for Login
-  document
-    .getElementById("show-password-login")
-    .addEventListener("change", function () {
-      const passwordField = document.getElementById("password");
-      passwordField.type = this.checked ? "text" : "password"; // Toggle password type
-    });
-
-  // Initial setup: Only show the login form on load
-  registerForm.style.display = "none"; // Hide registration form by default
+hambutton.addEventListener("click", () => {
+  mainnav.classList.toggle("open");
+  hambutton.classList.toggle("open");
 });
