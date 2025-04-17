@@ -4,21 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>EcoWise Shop | Wishlist</title>
-    <script
-      type="module"
-      crossorigin
-      src="/assets/wishlist-CF2o5kPQ.js"
-    ></script>
-    <link
-      rel="modulepreload"
-      crossorigin
-      href="/assets/modulepreload-polyfill-B5Qt9EMX.js"
-    />
-    <link rel="stylesheet" crossorigin href="/assets/style-DiwdvK-v.css" />
+
+    <link rel="icon" href="../images/logos/favicon.ico" />
+
+
+    <script type="module" crossorigin src="/assets/wishlist-Dv2kPL5L.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/style-BjrOFaNX.js">
+    <link rel="stylesheet" crossorigin href="/assets/style-DFya3pjJ.css">
   </head>
   <body>
     <header>
-      <!-- <div id="header"></div>  -->
       <div class="logo-container">
         <img
           src="../images/logos/eco-logo.PNG"
@@ -35,13 +30,13 @@
             id="search-form"
             action="product-listing/index.html"
             method="GET"
+            class="search-form"
           >
             <input
               type="text"
               class="search-box"
               name="query"
               placeholder="Search products..."
-              required
             />
             <button type="submit" class="search-button">🔍</button>
           </form>
@@ -49,18 +44,15 @@
         <div id="menu"></div>
         <ul class="navigation">
           <li class="current-menu-item"><a href="src/index.html">Home</a></li>
-          <!-- <li><a href="product-listing/index.html">Products</a></li>   -->
           <li><a href="wishlist/index.html">Wishlist</a></li>
           <li><a href="cart/index.html">Cart</a></li>
           <li class="sign-in"><a href="auth/login.html">Login</a></li>
-          <!-- <li><a href="auth/signup.html">Sign Up</a></li>  -->
-          <!-- <button class="btnLogin-popup">Login</button> -->
         </ul>
       </nav>
     </header>
 
     <main>
-      <h2>Your Wishlist</h2>
+      <h2 id="heading"></h2>
       <div id="wishlist-container" class="wishlist-container"></div>
       <div id="empty-message" class="empty-message" style="display: none">
         Your wishlist is empty.
@@ -111,7 +103,7 @@
       <div class="project-info">
         <p>WDD330 Class Project</p>
         <p>Instructor: Nate Gibson</p>
-        <p>&copy; <span id="currentyear"></span> Healthy Eats</p>
+        <p>&copy; 2025<span id="currentyear"></span> EcoWise Shop</p>
       </div>
     </footer>
   </body>

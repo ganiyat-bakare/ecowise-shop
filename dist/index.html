@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>EcoWise Shop | Home</title>
 
-    <!-- <script src="./js/login.js" type="module"></script> -->
 
     <script
       type="module"
@@ -22,13 +21,10 @@
       href="https://fonts.googleapis.com/css2?family=Lora:wght@700&family=Roboto:wght@400&display=swap"
       rel="stylesheet"
     />
-    <script type="module" crossorigin src="/assets/main-hAdgT72X.js"></script>
-    <link
-      rel="modulepreload"
-      crossorigin
-      href="/assets/modulepreload-polyfill-B5Qt9EMX.js"
-    />
-    <link rel="stylesheet" crossorigin href="/assets/style-DiwdvK-v.css" />
+    <script type="module" crossorigin src="/assets/main-DUvUwXLT.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/style-BjrOFaNX.js">
+    <link rel="modulepreload" crossorigin href="/assets/product-listing-DYCMCtPh.js">
+    <link rel="stylesheet" crossorigin href="/assets/style-DFya3pjJ.css">
   </head>
   <body>
     <header>
@@ -48,13 +44,13 @@
             id="search-form"
             action="product-listing/index.html"
             method="GET"
+            class="search-form"
           >
             <input
               type="text"
               class="search-box"
               name="query"
               placeholder="Search products..."
-              required
             />
             <button type="submit" class="search-button">🔍</button>
           </form>
@@ -62,27 +58,23 @@
         <div id="menu"></div>
         <ul class="navigation">
           <li class="current-menu-item"><a href="src/index.html">Home</a></li>
-          <!-- <li><a href="product-listing/index.html">Products</a></li>   -->
           <li><a href="wishlist/index.html">Wishlist</a></li>
           <li><a href="cart/index.html">Cart</a></li>
           <li class="sign-in"><a href="auth/login.html">Login</a></li>
-          <!-- <li><a href="auth/signup.html">Sign Up</a></li>  -->
-          <!-- <button class="btnLogin-popup">Login</button> -->
         </ul>
       </nav>
     </header>
 
     <main>
       <section class="hero">
-        <!-- <div class="hero-text"> -->
-        <!-- <img 
-         src="../images/hero-sm.jpg"  -->
-        <!-- srcset="images/hero-sm.jpg 500w, images/hero.jpg" -->
-        <!-- alt="image of carts with green boxes inside"> -->
-        <!-- <h1>Choose Eco-Friendly Products</h1>   -->
-        <!-- <a href="product-listing/index.html" class="explore-button">Explore Eco-Friendly Products</a>   -->
-        <!-- </div>   -->
+        <div class="hero-text">
+          <a href="product-listing/index.html" class="explore-button"
+            >Explore Eco-Friendly Products</a
+          >
+        </div>
       </section>
+
+      <div id="visitor-message"></div>
 
       <h2>Explore Eco-Friendly Products</h2>
       <section class="categories">
@@ -103,46 +95,46 @@
         </div>
       </section>
 
-      <!-- <section class="products">  
-            <h2>Featured Products</h2>  
-            <div class="product-card" id="product-list">  
-                <img src="/images/tents/eco-tent.jpg" alt="Eco Tent" />  
-                <h3>Eco Tent 1</h3>  
-                <p>Description of Eco Tent 1.</p>  
-            </div>  
-            <div class="product-card">  
-                <img src="/images/backpacks/eco-backpack.jpg" alt="Eco Backpack" />  
-                <h3>Eco Backpack 1</h3>  
-                <p>Description of Eco Backpack 1.</p>  
-            </div>  
-            <div class="product-card">  
-                <img src="/images/sleeping-bags/eco-sleeping-bag.jpg" alt="Eco Sleeping Bag" />  
-                <h3>Eco Sleeping Bag 1</h3>  
-                <p>Description of Eco Sleeping Bag 1.</p>  
-            </div>  
-        </section>   -->
+      <div class="info-container">
+        <!-- Current Weather Section -->
+        <div class="weather-section">
+          <h3>Current Weather in Abuja, Nigeria</h3>
+          <p>The current temperature is <span id="current-temp"></span></p>
+          <figure>
+            <img id="weather-icon" src="" alt="" />
+            <figcaption></figcaption>
+          </figure>
 
-      <!-- Newsletter Section -->
-      <div class="newsletter">
-        <h2>Join Our Eco Community!</h2>
-        <p>
-          Subscribe to our newsletter for the latest news and exclusive offers.
-        </p>
-        <div class="newsletter-input-container">
-          <input
-            type="email"
-            id="newsletterEmail"
-            placeholder="Enter your email"
-            required
-          />
-          <button id="newsletterSubmit">Subscribe</button>
+          <p id="air-quality">Air Quality Index: <span id="aqi"></span></p>
+          <div class="eco-tips">
+            <h4>Eco-Friendly Tips:</h4>
+            <p id="weather-tip"></p>
+          </div>
         </div>
-        <p id="newsletterMessage" class="hidden"></p>
+
+        <!-- Newsletter Section -->
+        <div class="newsletter">
+          <h2>Join Our Eco Community!</h2>
+          <p>
+            Subscribe to our newsletter for the latest news and exclusive
+            offers.
+          </p>
+          <div class="newsletter-input-container">
+            <input
+              type="email"
+              id="newsletterEmail"
+              placeholder="Enter your email"
+              required
+              class="newsletter-input"
+            />
+            <button id="newsletterSubmit">Subscribe</button>
+          </div>
+          <p id="newsletterMessage" class="hidden"></p>
+        </div>
       </div>
 
       <!-- Mission Section -->
       <section class="mission">
-        <!-- <h2>Our Mission</h2>   -->
         <p>Every purchase is a step towards a better world.</p>
         <p>
           At EcoWise, our mission is to empower you to make sustainable choices
@@ -154,11 +146,6 @@
           the environment.
         </p>
       </section>
-      <!-- <section class="mission">  
-            <p>At EcoWise, we believe that every purchase can make a difference.</p>  
-            <p>Our mission is to empower consumers to make sustainable choices that protect our planet.</p>  
-            <p>We're dedicated to offering a range of eco-friendly products that are not only good for the earth but also for your home and family.</p>  
-        </section>   -->
     </main>
 
     <footer>
@@ -205,7 +192,7 @@
       <div class="project-info">
         <p>WDD330 Class Project</p>
         <p>Instructor: Nate Gibson</p>
-        <p>&copy; <span id="currentyear"></span> Healthy Eats</p>
+        <p>&copy; <span id="currentyear"></span> EcoWise Shop</p>
       </div>
     </footer>
   </body>
