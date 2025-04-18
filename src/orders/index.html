@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="../css/style.css" />
 
     <link rel="icon" href="../images/logos/favicon.ico" />
-    
+
     <script src="../js/orders.js" type="module"></script>
   </head>
   <body>
@@ -21,27 +21,32 @@
         />
         <div class="logo-text">EcoWise Shop</div>
       </div>
-      
-      <p id="welcome-user"></p>
-      <button id="logout-btn" style="display: none;">Logout</button>
 
+      <p id="welcome-user"></p>
+      <button id="logout-btn" style="display: none">Logout</button>
     </header>
     <main class="order-page">
       <section class="order">
         <div class="order-success-animation">
           <svg class="checkmark" viewBox="0 0 52 52">
-            <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none" />
+            <circle
+              class="checkmark-circle"
+              cx="26"
+              cy="26"
+              r="25"
+              fill="none"
+            />
             <path class="checkmark-check" fill="none" d="M14 27l7 7 16-16" />
           </svg>
         </div>
-        
+
         <h2>Order Successful!</h2>
         <p>Thank you for shopping! Your order has been placed successfully.</p>
         <h3>Order Summary</h3>
         <p id="customer-info"></p>
-    
+
         <div id="order-items" class="order-items"></div>
-    
+
         <div class="summary">
           <p id="summary-subtotal"></p>
           <p id="summary-tax"></p>
@@ -49,7 +54,7 @@
           <p id="summary-total" class="total"></p>
         </div>
       </section>
-    </main>      
+    </main>
 
     <footer>
       <div class="ecowise-shop">
