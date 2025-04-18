@@ -1337,6 +1337,11 @@ button:hover {
   text-align: justify;
 }
 
+header p {
+  font-size: 2rem;
+  color: var(--white);
+}
+
 footer {
   background-color: var(--deep-blue);
   color: var(--white);

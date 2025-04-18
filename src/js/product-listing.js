@@ -97,7 +97,7 @@ function setupQuickViewButtons() {
           <del>$${originalPrice.toFixed(2)}</del> 
           <strong>$${discountedPrice.toFixed(2)}</strong>
         </p>
-        ${savings ? `<p class="discount-flag">You save: $${savings}</p>` : ""}
+        ${savings ? `<p class="discount-flag">You saved: $${savings}</p>` : ""}
       `;
 
       quickViewModal.style.display = "flex";

@@ -13,18 +13,13 @@ document.addEventListener("DOMContentLoaded", () => {
       const password = document.getElementById("password").value.trim();
       const users = JSON.parse(localStorage.getItem("users")) || [];
 
-      const user = users.find(
-        (u) => u.email === email && u.password === password,
-      );
+      const user = users.find(u => u.email === email && u.password === password);
 
       if (user) {
         // Save login session
         localStorage.setItem("isLoggedIn", "true");
         localStorage.setItem("currentUser", JSON.stringify(user));
-        localStorage.setItem(
-          "authToken",
-          JSON.stringify({ email: user.email }),
-        );
+        localStorage.setItem("authToken", JSON.stringify({ email: user.email }));
 
         loginMessage.textContent = "Login successful! Redirecting...";
         loginMessage.style.color = "green";
@@ -38,13 +33,9 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
-    document
-      .getElementById("show-password-login")
-      .addEventListener("change", function () {
-        document.getElementById("password").type = this.checked
-          ? "text"
-          : "password";
-      });
+    document.getElementById("show-password-login").addEventListener("change", function () {
+      document.getElementById("password").type = this.checked ? "text" : "password";
+    });
   }
 
   // SIGNUP
@@ -57,9 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const username = document.getElementById("username").value.trim();
       const email = document.getElementById("email-signup").value.trim();
       const password = document.getElementById("password-signup").value.trim();
-      const confirmPassword = document
-        .getElementById("confirm-password")
-        .value.trim();
+      const confirmPassword = document.getElementById("confirm-password").value.trim();
 
       if (password !== confirmPassword) {
         signupMessage.textContent = "Passwords do not match!";
@@ -69,7 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const users = JSON.parse(localStorage.getItem("users")) || [];
 
-      if (users.some((user) => user.email === email)) {
+      if (users.some(user => user.email === email)) {
         signupMessage.textContent = "User already exists!";
         signupMessage.style.color = "red";
         return;
@@ -83,27 +72,20 @@ document.addEventListener("DOMContentLoaded", () => {
       signupMessage.style.color = "green";
 
       setTimeout(() => {
-        window.location.href = "/auth/login.html";
+        window.location.href = "login.html";
       }, 1500);
     });
 
-    document
-      .getElementById("show-password-signup")
-      .addEventListener("change", function () {
-        document.getElementById("password-signup").type = this.checked
-          ? "text"
-          : "password";
-      });
+    document.getElementById("show-password-signup").addEventListener("change", function () {
+      document.getElementById("password-signup").type = this.checked ? "text" : "password";
+    });
 
-    document
-      .getElementById("show-confirm-password")
-      .addEventListener("change", function () {
-        document.getElementById("confirm-password").type = this.checked
-          ? "text"
-          : "password";
-      });
+    document.getElementById("show-confirm-password").addEventListener("change", function () {
+      document.getElementById("confirm-password").type = this.checked ? "text" : "password";
+    });
   }
 });
+
 
 // Hamburger menu functionality
 const mainnav = document.querySelector(".navigation");
