@@ -16,7 +16,7 @@ export default defineConfig({
         registration: resolve(__dirname, "src/auth/signup.html"),
         wishlist: resolve(__dirname, "src/wishlist/index.html"),
         product: resolve(__dirname, "src/product-pages/index.html"),
-        order: resolve(__dirname, "src/orders/index.html"), // changed "Order" to "order"
+        order: resolve(__dirname, "src/orders/index.html"),
       },
     },
   },
