@@ -8,7 +8,7 @@
 
 - This repository contains the Ecowise Shop final web application project for WDD 330. The application is an eco-friendly e-commerce shopping website.
 
--The EcoWise Shop application is designed to help users make informed decisions about eco-friendly products and brands. It addresses the challenge of identifying sustainable options in the marketplace, promoting environmentally responsible shopping practices. 
+- The EcoWise Shop application is designed to help users make informed decisions about eco-friendly products and brands. It addresses the challenge of identifying sustainable options in the marketplace, promoting environmentally responsible shopping practices. 
 
 - My motivation for this project comes from a commitment to sustainability and a desire to make eco-conscious shopping more accessible for consumers.
 
